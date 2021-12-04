@@ -123,7 +123,7 @@ class SignUpPage extends StatelessWidget {
                           _formKey.currentState!.save();
                           EasyLoading.show();
                           try {
-                            UserCredential user = await FirebaseAuth.instance
+                            await FirebaseAuth.instance
                                 .createUserWithEmailAndPassword(
                                     email: _email, password: _password);
                             userSetup(
