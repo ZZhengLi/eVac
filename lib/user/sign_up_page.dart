@@ -75,10 +75,10 @@ class SignUpPage extends StatelessWidget {
                         const TextFieldName(text: "Email"),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
-                          decoration:
-                              const InputDecoration(hintText: "yourEmail@email.com"),
-                          validator:
-                              EmailValidator(errorText: "Enter a valid email address"),
+                          decoration: const InputDecoration(
+                              hintText: "yourEmail@email.com"),
+                          validator: EmailValidator(
+                              errorText: "Enter a valid email address"),
                           onSaved: (email) => _email = email!,
                         ),
                         SizedBox(height: 0.025 * height),
@@ -95,7 +95,8 @@ class SignUpPage extends StatelessWidget {
                         const TextFieldName(text: "Password"),
                         TextFormField(
                           obscureText: true,
-                          decoration: const InputDecoration(hintText: "********"),
+                          decoration:
+                              const InputDecoration(hintText: "********"),
                           validator: passwordValidator,
                           onSaved: (password) => _password = password!,
                           onChanged: (pass) => _password = pass,
@@ -104,7 +105,8 @@ class SignUpPage extends StatelessWidget {
                         const TextFieldName(text: "Confirm Password"),
                         TextFormField(
                           obscureText: true,
-                          decoration: const InputDecoration(hintText: "********"),
+                          decoration:
+                              const InputDecoration(hintText: "********"),
                           validator: (pass) => MatchValidator(
                                   errorText: "Password do not  match")
                               .validateMatch(pass!, _password),

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:vaccinationapp/home_page.dart';
 import 'package:vaccinationapp/pages/home_page.dart';
 import 'package:vaccinationapp/user/sign_up_page.dart';
 
@@ -159,11 +160,11 @@ class _SignInPageState extends State<SignInPage> {
   Future<void> signInMethod(BuildContext context) async {
     EasyLoading.show();
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text, password: _passwordController.text);
+      // await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //     email: _emailController.text, password: _passwordController.text);
       EasyLoading.dismiss();
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return const homePage();
+        return const HomePage();
       }));
     } catch (e) {
       EasyLoading.showError(e.toString());
