@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vaccinationapp/icons.dart';
+import 'package:vaccinationapp/widgets/icons.dart';
 import 'package:vaccinationapp/widgets/svg_asset.dart';
 
 class DiscoverCard extends StatelessWidget {

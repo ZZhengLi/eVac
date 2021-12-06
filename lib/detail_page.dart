@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:vaccinationapp/icons.dart';
+import 'package:vaccinationapp/widgets/icons.dart';
 import 'package:vaccinationapp/widgets/svg_asset.dart';
 
 class DetailPage extends StatefulWidget {

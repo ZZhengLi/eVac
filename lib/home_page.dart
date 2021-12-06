@@ -1,19 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
-import 'package:vaccinationapp/user/sign_in_page.dart';
 import 'package:vaccinationapp/widgets/category_boxes.dart';
-import 'package:vaccinationapp/icons.dart';
+import 'package:vaccinationapp/widgets/drawer.dart';
+import 'package:vaccinationapp/widgets/icons.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
 import 'package:vaccinationapp/widgets/svg_asset.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({
+  HomePage({
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0xff121421),
       appBar: AppBar(
+          centerTitle: true,
           title: const Text("Home"),
+          elevation: 0,
           backgroundColor: const Color(0xff121421),
           actions: <Widget>[
             IconButton(
@@ -35,92 +37,11 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
             )
           ]),
-      drawer: Drawer(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          ListTile(
-            leading: const CircleAvatar(
-              backgroundColor: Colors.red,
-              child: Icon(Icons.logout),
-            ),
-            title: const Text("Sign Out"),
-            onTap: () {
-              EasyLoading.show();
-              // signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) {
-                return const SignInPage();
-              }));
-              EasyLoading.dismiss();
-            },
-          ),
-        ],
-      )),
+      drawer: drawer(),
       body: SafeArea(
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 28.w,
-                right: 18.w,
-                top: 36.h,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Discover",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 34.w,
-                          fontWeight: FontWeight.bold)),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(360),
-                    onTap: onSearchIconTapped,
-                    child: SizedBox(
-                      height: 35.w,
-                      width: 35.w,
-                      child: Center(
-                        child: SvgAsset(
-                          assetName: AssetName.search,
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 120.h,
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  SizedBox(
-                    width: 28.w,
-                  ),
-                  CategoryBoxes(
-                    text: "Insomnia",
-                    onPressed: (value) => print(value),
-                  ),
-                  CategoryBoxes(
-                    text: "Depression",
-                    onPressed: (value) => print(value),
-                  ),
-                  CategoryBoxes(
-                    text: "Baby Sleep",
-                    onPressed: (value) => print(value),
-                  ),
-                  CategoryBoxes(
-                    text: "Insomnia",
-                    onPressed: (value) => print(value),
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 28.w),
               child: Row(

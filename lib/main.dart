@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         builder: () => GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(),
-            home: user == null ? const SignInPage() : const HomePage(),
+            home: user == null ? const SignInPage() : HomePage(),
             builder: EasyLoading.init()));
   }
 }

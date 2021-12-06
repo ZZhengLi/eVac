@@ -1,6 +1,5 @@
 import 'package:vaccinationapp/home_page.dart';
 
-import '../pages/home_page.dart';
 import '../user/sign_in_page.dart';
 import '../user/sign_up_page.dart';
 

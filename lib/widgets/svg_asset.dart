@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vaccinationapp/icons.dart';
+import 'package:vaccinationapp/widgets/icons.dart';
 
 class SvgAsset extends StatelessWidget {
   final AssetName? assetName;

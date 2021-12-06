@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
 import 'package:vaccinationapp/widgets/category_boxes.dart';
-import 'package:vaccinationapp/icons.dart';
+import 'package:vaccinationapp/widgets/icons.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
 import 'package:vaccinationapp/widgets/svg_asset.dart';
@@ -149,45 +149,49 @@ class _homePageState extends State<homePage> {
             ),
             SizedBox(height: 16.h),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 28.w),
-              child: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 19.w, mainAxisExtent:  125.w, mainAxisSpacing: 19.w),
+              padding: EdgeInsets.symmetric(horizontal: 28.w),
+              child: GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 19.w,
+                    mainAxisExtent: 125.w,
+                    mainAxisSpacing: 19.w),
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   DiscoverSmallCard(
-                    onTap: (){},
+                    onTap: () {},
                     title: "Calming Sounds",
                     gradientStartColor: Color(0xff13DEA0),
                     gradientEndColor: Color(0xff06B782),
                   ),
                   DiscoverSmallCard(
-                    onTap: (){},
+                    onTap: () {},
                     title: "Insomnia",
                     gradientStartColor: Color(0xffFC67A7),
                     gradientEndColor: Color(0xffF6815B),
-                    icon:    SvgAsset(
+                    icon: SvgAsset(
                       assetName: AssetName.tape,
                       height: 24.w,
                       width: 24.w,
                     ),
                   ),
                   DiscoverSmallCard(
-                    onTap: (){},
+                    onTap: () {},
                     title: "For Children",
                     gradientStartColor: Color(0xffFFD541),
                     gradientEndColor: Color(0xffF0B31A),
                   ),
                   DiscoverSmallCard(
-                    onTap: (){},
+                    onTap: () {},
                     title: "Tips For Sleeping",
-                    icon:  SvgAsset(
+                    icon: SvgAsset(
                       assetName: AssetName.tape,
                       height: 24.w,
                       width: 24.w,
                     ),
                   ),
                 ],
-
               ),
             )
           ],
@@ -196,17 +200,13 @@ class _homePageState extends State<homePage> {
     );
   }
 
-
-  void onSeeAllTapped() {
-  }
+  void onSeeAllTapped() {}
 
   void onSleepvaccinationappTapped() {
-    Get.to(()=> DetailPage(), transition: Transition.rightToLeft);
+    Get.to(() => DetailPage(), transition: Transition.rightToLeft);
   }
 
-  void onDepressionHealingTapped() {
-  }
+  void onDepressionHealingTapped() {}
 
-  void onSearchIconTapped() {
-  }
+  void onSearchIconTapped() {}
 }
