@@ -88,7 +88,7 @@ class _drawerState extends State<drawer> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return Setting();
+                          return const Setting();
                         }),
                       );
                     })
