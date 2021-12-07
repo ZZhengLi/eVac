@@ -79,10 +79,10 @@ Future<void> userSetup(
   });
 }
 
-Future<void> updateData(String displayname, String email) async {
+Future<void> updateData(String displayname, String email,String address) async {
   var uid = FirebaseAuth.instance.currentUser!.uid;
   var querySnapshots = await FirebaseFirestore.instance.doc("Users/$uid").get();
-  querySnapshots.reference.update({"displayName": displayname, "email": email});
+  querySnapshots.reference.update({"displayName": displayname, "email": email, "address": address});
 }
 
 Future<String> pickSaveImage() async {
