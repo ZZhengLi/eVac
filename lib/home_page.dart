@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
+import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/widgets/category_boxes.dart';
 import 'package:vaccinationapp/widgets/drawer.dart';
 import 'package:vaccinationapp/widgets/icons.dart';
@@ -33,8 +34,12 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: const Color(0xff121421),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.qr_code_scanner),
-              onPressed: () {},
+              icon: const Icon(Icons.qr_code),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return QrCode();
+                }));
+              },
             )
           ]),
       drawer: drawer(),
