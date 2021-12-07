@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:vaccinationapp/scanner.dart';
 
 class QrCode extends StatefulWidget {
   QrCode({Key? key}) : super(key: key);
@@ -65,7 +66,11 @@ class _QrCodeState extends State<QrCode> {
                     ),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Scanner();
+                  }));
+                },
               ),
             ),
           ),
