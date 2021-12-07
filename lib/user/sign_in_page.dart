@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
 import 'package:vaccinationapp/home_page.dart';
 import 'package:vaccinationapp/user/sign_up_page.dart';
 
@@ -34,7 +33,7 @@ class _SignInPageState extends State<SignInPage> {
                 padding: EdgeInsets.fromLTRB(0.05 * width, 0.1 * height, 0, 0),
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("img/sibg0.jpg"), //Image
+                      image: AssetImage("assets/pics/sibg0.jpg"), //Image
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
