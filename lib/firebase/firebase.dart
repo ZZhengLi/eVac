@@ -64,6 +64,12 @@ Future<void> changeAvatar(String photoURL) async {
   querySnapshots.reference.update({"photoUrl": photoURL});
 }
 
+Future<void> changeBI(String photoURL) async {
+  var uid = FirebaseAuth.instance.currentUser!.uid;
+  var querySnapshots = await FirebaseFirestore.instance.doc("Users/$uid").get();
+  querySnapshots.reference.update({"backgroundImg": photoURL});
+}
+
 Future<void> userSetup(
     {required String uid,
     String displayname = "",
@@ -75,14 +81,18 @@ Future<void> userSetup(
     'email': email,
     "phone": phone,
     "photoUrl":
-        "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def"
+        "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def",
+    "backgroundImg":
+        "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fbgp.jpg?alt=media&token=d01db687-8784-4d82-a64b-14abd021e602"
   });
 }
 
-Future<void> updateData(String displayname, String email,String address) async {
+Future<void> updateData(
+    String displayname, String email, String address) async {
   var uid = FirebaseAuth.instance.currentUser!.uid;
   var querySnapshots = await FirebaseFirestore.instance.doc("Users/$uid").get();
-  querySnapshots.reference.update({"displayName": displayname, "email": email, "address": address});
+  querySnapshots.reference
+      .update({"displayName": displayname, "email": email, "address": address});
 }
 
 Future<String> pickSaveImage() async {

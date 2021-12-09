@@ -42,25 +42,34 @@ class _drawerState extends State<drawer> {
 
                         return UserAccountsDrawerHeader(
                           margin: const EdgeInsets.all(0),
-                          accountName: Text(snapshot.data['displayName']),
+                          accountName: Text(
+                            snapshot.data['displayName'],
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           accountEmail: Text(snapshot.data['email']),
                           currentAccountPicture: CircleAvatar(
                               // foregroundColor: Colors.white,
                               backgroundColor: Colors.white,
                               backgroundImage:
                                   (NetworkImage(snapshot.data['photoUrl']))),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               // color: Color(0xff121421),
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fbgp.jpg?alt=media&token=d01db687-8784-4d82-a64b-14abd021e602"),
+                                      snapshot.data['backgroundImg']),
                                   fit: BoxFit.cover)),
                         );
                       }))
             ],
           ),
           Container(
-            color: const Color(0xff263950),
+            decoration: BoxDecoration(
+              color: const Color(0xff263950),
+              border: Border.all(
+                color: const Color(0xff263950),
+              ),
+            ),
             child: Column(
               children: [
                 ListTile(
@@ -97,8 +106,13 @@ class _drawerState extends State<drawer> {
           ),
           Expanded(
             child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xff263950),
+                border: Border.all(
+                  color: const Color(0xff263950),
+                ),
+              ),
               alignment: Alignment.bottomLeft,
-              color: const Color(0xff263950),
               child: ListTile(
                 leading: const CircleAvatar(
                   backgroundColor: Colors.red,
