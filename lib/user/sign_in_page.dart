@@ -157,7 +157,7 @@ class _SignInPageState extends State<SignInPage> {
 
   //Sign in with firebase and loading animation
   Future<void> signInMethod(BuildContext context) async {
-    EasyLoading.show();
+    EasyLoading.show(maskType: EasyLoadingMaskType.black);
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text, password: _passwordController.text);

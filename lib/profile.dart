@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/info_page.dart';
 
@@ -21,43 +22,50 @@ class _ProfilePageState extends State<ProfilePage> {
     final uid = user!.uid;
     final Stream _usersStream =
         FirebaseFirestore.instance.doc("Users/$uid").snapshots();
-    return Stack(children: [
-      Container(color: const Color(0xff121421)),
-      StreamBuilder<dynamic>(
-          stream: _usersStream,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            return Container(
+    EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    return StreamBuilder<dynamic>(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasError) {
+            EasyLoading.dismiss();
+            return const Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Text("Loading");
+          }
+          EasyLoading.dismiss();
+          return Stack(children: [
+            Container(color: const Color(0xff121421)),
+            Container(
                 height: 0.3 * height,
                 width: width,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(snapshot.data['backgroundImg']),
                       fit: BoxFit.cover),
-                ));
-          }),
-      Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            title: const Text("My Profile"),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.list),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return InfoPage();
-                  }));
-                },
-              )
-            ]),
-        backgroundColor: Colors.transparent,
-        body: Container(),
-      ),
-      StreamBuilder<dynamic>(
-          stream: _usersStream,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            return Column(
+                )),
+            Scaffold(
+              appBar: AppBar(
+                  centerTitle: true,
+                  title: const Text("My Profile"),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.list),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return InfoPage();
+                        }));
+                      },
+                    )
+                  ]),
+              backgroundColor: Colors.transparent,
+              body: Container(),
+            ),
+            Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,8 +89,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                         title: const Text("Change Avatar"),
                                         onTap: () async {
                                           Navigator.pop(context);
-                                          var imgUrl = await pickSaveImage();
-                                          await changeAvatar(imgUrl.toString());
+                                          var imgUrl =
+                                              await pickSaveImage("avatar");
+                                          await changeImg(
+                                              imgUrl.toString(), "photoUrl");
                                         },
                                       ),
                                       ListTile(
@@ -92,18 +102,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                             "Change Background Image"),
                                         onTap: () async {
                                           Navigator.pop(context);
-                                          var imgUrl = await pickSaveImage();
-                                          await changeBI(imgUrl.toString());
+                                          var imgUrl =
+                                              await pickSaveImage("bgi");
+                                          await changeImg(imgUrl.toString(),
+                                              "backgroundImg");
                                         },
                                       ),
                                     ],
                                   );
                                 });
                           },
-                          // {
-                          // var imgUrl = await pickSaveImage();
-                          // await changeAvatar(imgUrl.toString());
-                          // },
                           child: CircleAvatar(
                               radius: 80,
                               backgroundImage:
@@ -128,9 +136,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       EdgeInsets.fromLTRB(0.1 * width, 0.02 * height, 0, 0),
                   child: Column(
                     children: [
-                      infoFormat(width, height, "Name", "Jessica Shmitz"),
-                      infoFormat(width, height, "ID Card", "7 100 700 035 130"),
-                      infoFormat(width, height, "Phone", "081 910 0231")
+                      infoFormat(
+                          width, height, "Name", snapshot.data["displayName"]),
+                      infoFormat(width, height, "ID Card", snapshot.data["id"]),
+                      infoFormat(width, height, "Phone", snapshot.data["phone"])
                     ],
                   ),
                 ),
@@ -139,25 +148,25 @@ class _ProfilePageState extends State<ProfilePage> {
                       EdgeInsets.fromLTRB(0.05 * width, 0.05 * height, 0, 0),
                   child: Row(
                     children: [
-                      infoBox(width, "Blood Group", "B+", Icons.bloodtype,
-                          Colors.red[300]),
+                      infoBox(width, "Blood Group", snapshot.data["bloodGroup"],
+                          Icons.bloodtype, Colors.red[300]),
                       SizedBox(
                         width: 0.045 * width,
                       ),
-                      infoBox(width, "Weight(kg)", "47.5",
+                      infoBox(width, "Weight(kg)", snapshot.data["weight"],
                           Icons.accessibility_new, Colors.greenAccent),
                       SizedBox(
                         width: 0.045 * width,
                       ),
-                      infoBox(width, "Height (cm)", "163", Icons.accessibility,
-                          Colors.orange[300])
+                      infoBox(width, "Height (cm)", snapshot.data["height"],
+                          Icons.accessibility, Colors.orange[300])
                     ],
                   ),
                 ),
               ],
-            );
-          }),
-    ]);
+            ),
+          ]);
+        });
   }
 
   Row infoFormat(double width, double height, String title, String data) {

@@ -58,16 +58,10 @@ Future<void> resetEmail(String email) async {
   user!.updateEmail(email);
 }
 
-Future<void> changeAvatar(String photoURL) async {
+Future<void> changeImg(String photoURL, String img) async {
   var uid = FirebaseAuth.instance.currentUser!.uid;
   var querySnapshots = await FirebaseFirestore.instance.doc("Users/$uid").get();
-  querySnapshots.reference.update({"photoUrl": photoURL});
-}
-
-Future<void> changeBI(String photoURL) async {
-  var uid = FirebaseAuth.instance.currentUser!.uid;
-  var querySnapshots = await FirebaseFirestore.instance.doc("Users/$uid").get();
-  querySnapshots.reference.update({"backgroundImg": photoURL});
+  querySnapshots.reference.update({img: photoURL});
 }
 
 Future<void> userSetup(
@@ -95,12 +89,12 @@ Future<void> updateData(
       .update({"displayName": displayname, "email": email, "address": address});
 }
 
-Future<String> pickSaveImage() async {
+Future<String> pickSaveImage(String img) async {
   var user = FirebaseAuth.instance.currentUser;
   XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
   final _image = File(image!.path);
   final ref =
-      FirebaseStorage.instance.ref().child("userImages").child(user!.uid);
+      FirebaseStorage.instance.ref().child("userImages").child(user!.uid + img);
   await ref.putFile(_image);
   var url = await ref.getDownloadURL();
   return url;

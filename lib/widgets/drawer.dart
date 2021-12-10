@@ -21,6 +21,7 @@ class _drawerState extends State<drawer> {
     final uid = user!.uid;
     final Stream _usersStream =
         FirebaseFirestore.instance.doc("Users/$uid").snapshots();
+    EasyLoading.show(maskType: EasyLoadingMaskType.black);
     return Drawer(
       child: Column(
         children: [
@@ -32,6 +33,7 @@ class _drawerState extends State<drawer> {
                       builder: (BuildContext context,
                           AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.hasError) {
+                          EasyLoading.dismiss();
                           return const Text('Something went wrong');
                         }
 
@@ -39,7 +41,7 @@ class _drawerState extends State<drawer> {
                             ConnectionState.waiting) {
                           return const Text("Loading");
                         }
-
+                        EasyLoading.dismiss();
                         return UserAccountsDrawerHeader(
                           margin: const EdgeInsets.all(0),
                           accountName: Text(
@@ -80,6 +82,7 @@ class _drawerState extends State<drawer> {
                   title: const Text("Profile",
                       style: TextStyle(color: Colors.white)),
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return ProfilePage();
@@ -94,6 +97,7 @@ class _drawerState extends State<drawer> {
                     title: const Text("Setting",
                         style: TextStyle(color: Colors.white)),
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {

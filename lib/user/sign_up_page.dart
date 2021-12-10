@@ -22,14 +22,7 @@ class SignUpPage extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        // backgroundColor: Color(0xff121421),
-        body:
-            // SvgPicture.asset(
-            //   "assets/icons/Sign_Up_bg.svg",
-            //   height: MediaQuery.of(context).size.height,
-            //   // Now it takes 100% of our height
-            // ),
-            Center(
+        body: Center(
           child: SafeArea(
             child: SingleChildScrollView(
               padding: EdgeInsets.fromLTRB(
@@ -121,7 +114,7 @@ class SignUpPage extends StatelessWidget {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          EasyLoading.show();
+                          EasyLoading.show(maskType: EasyLoadingMaskType.black);
                           try {
                             final FirebaseAuth _auth = FirebaseAuth.instance;
                             await _auth.createUserWithEmailAndPassword(
