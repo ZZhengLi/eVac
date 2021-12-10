@@ -6,7 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 
 class InfoPage extends StatefulWidget {
-  InfoPage({Key? key}) : super(key: key);
+  const InfoPage({Key? key}) : super(key: key);
 
   @override
   _InfoPageState createState() => _InfoPageState();
@@ -14,25 +14,47 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
   final _formKey = GlobalKey<FormState>();
-  late String _fullName, _email, _password, _phoneNumber;
   late Stream _usersStream;
+  late String uid;
   bool editState = false;
-  var selectItemValue;
+  var _gender;
+  late TextEditingController _name,
+      _idCard,
+      _dob,
+      _address,
+      _nationality,
+      _email,
+      _phone,
+      _bloodGroup,
+      _weight,
+      _height;
 
   @override
   void initState() {
     super.initState();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
-    final uid = user!.uid;
+    uid = user!.uid;
     _usersStream = FirebaseFirestore.instance.doc("Users/$uid").snapshots();
+    FirebaseFirestore.instance.doc("Users/$uid").get().then((value) {
+      _name = TextEditingController(text: value.data()!["displayName"]);
+      _idCard = TextEditingController(text: value.data()!["id"]);
+      _dob = TextEditingController(text: value.data()!["dob"]);
+      _address = TextEditingController(text: value.data()!["address"]);
+      _nationality = TextEditingController(text: value.data()!["nationality"]);
+      _email = TextEditingController(text: value.data()!["email"]);
+      _phone = TextEditingController(text: value.data()!["phone"]);
+      _bloodGroup = TextEditingController(text: value.data()!["bloodGroup"]);
+      _weight = TextEditingController(text: value.data()!["weight"]);
+      _height = TextEditingController(text: value.data()!["height"]);
+      _gender = value.data()!["gender"];
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    EasyLoading.show(maskType: EasyLoadingMaskType.black);
     return StreamBuilder<dynamic>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -69,8 +91,29 @@ class _InfoPageState extends State<InfoPage> {
                     elevation: 0,
                     actions: <Widget>[
                       IconButton(
-                          icon: editState ? Icon(Icons.done) : Icon(Icons.edit),
-                          onPressed: () {
+                          icon: editState
+                              ? const Icon(Icons.done)
+                              : const Icon(Icons.edit),
+                          onPressed: () async {
+                            if (editState) {
+                              EasyLoading.show(
+                                  maskType: EasyLoadingMaskType.black);
+                              await FirebaseFirestore.instance
+                                  .doc("Users/$uid")
+                                  .set({
+                                "displayName": _name.text,
+                                "id": _idCard.text,
+                                "gender": _gender,
+                                "dob": _dob.text,
+                                "address": _address.text,
+                                "nationality": _nationality.text,
+                                "phone": _phone.text,
+                                "bloodGroup": _bloodGroup.text,
+                                "weight": _weight.text,
+                                "height": _height.text
+                              }, SetOptions(merge: true));
+                              EasyLoading.dismiss();
+                            }
                             setState(() {
                               if (editState) {
                                 editState = false;
@@ -105,6 +148,8 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                   Expanded(
                     child: Container(
+                      margin: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
                       padding: EdgeInsets.fromLTRB(
                           0.1 * width, 0.02 * height, 0.1 * width, 0),
                       child: ListView(
@@ -117,26 +162,25 @@ class _InfoPageState extends State<InfoPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   infos(
-                                      height,
-                                      width,
-                                      "Name",
-                                      "data",
-                                      TextEditingController(
-                                          text: snapshot.data["displayName"]),
-                                      editState),
+                                      height: height,
+                                      width: width,
+                                      title: "Name",
+                                      controller: _name,
+                                      edit: editState,
+                                      keyboardType: TextInputType.name),
                                   infos(
-                                      height,
-                                      width,
-                                      "ID Card",
-                                      "data",
-                                      TextEditingController(text: '初始值'),
-                                      editState),
+                                      height: height,
+                                      width: width,
+                                      title: "ID Card",
+                                      controller: _idCard,
+                                      edit: editState,
+                                      keyboardType: TextInputType.text),
                                   Row(
                                     children: [
                                       Container(
                                           alignment: Alignment.centerLeft,
                                           height: 0.06 * height,
-                                          width: 0.2 * width,
+                                          width: 0.3 * width,
                                           child: const Text(
                                             "Gender",
                                             style: TextStyle(
@@ -151,14 +195,13 @@ class _InfoPageState extends State<InfoPage> {
                                           child: DropdownButton<dynamic>(
                                             dropdownColor:
                                                 const Color(0xff263950),
-                                            style: const TextStyle(
-                                                color: Colors.white),
                                             hint: const Text('Gender',
                                                 style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
                                                   fontSize: 16,
                                                   color: Colors.white,
                                                 )),
-                                            value: selectItemValue,
+                                            value: _gender,
                                             items: <String>[
                                               'Male',
                                               'Female',
@@ -166,33 +209,140 @@ class _InfoPageState extends State<InfoPage> {
                                                 (String value) {
                                               return DropdownMenuItem<String>(
                                                 value: value,
-                                                child: Text(value),
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16,
+                                                      color: Colors.white),
+                                                ),
                                               );
                                             }).toList(),
-                                            onChanged: (T) {
-                                              setState(() {
-                                                selectItemValue = T;
-                                              });
-                                            },
+                                            onChanged: editState
+                                                ? (T) {
+                                                    setState(() {
+                                                      _gender = T;
+                                                    });
+                                                  }
+                                                : null,
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
                                   infos(
-                                      height,
-                                      width,
-                                      "Name",
-                                      "data",
-                                      TextEditingController(text: '初始值'),
-                                      editState),
+                                      height: height,
+                                      width: width,
+                                      title: "DOB",
+                                      controller: _dob,
+                                      edit: editState,
+                                      keyboardType: TextInputType.datetime),
+                                  SizedBox(height: 0.015 * height),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                          height: 0.09 * height,
+                                          width: 0.3 * width,
+                                          child: const Text(
+                                            "Address",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 0.09 * height,
+                                          child: TextFormField(
+                                            maxLines: 3,
+                                            keyboardType:
+                                                TextInputType.streetAddress,
+                                            controller: _address,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                            ),
+                                            decoration: InputDecoration(
+                                              enabled: editState,
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
+                                              border: const OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                ),
+                                              ),
+                                              enabledBorder:
+                                                  const UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0xff263950),
+                                                ),
+                                              ),
+                                              disabledBorder:
+                                                  const OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  const UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0xff263950),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   infos(
-                                      height,
-                                      width,
-                                      "Name",
-                                      "data",
-                                      TextEditingController(text: '初始值'),
-                                      editState),
+                                      height: height,
+                                      width: width,
+                                      title: "Nationality",
+                                      controller: _nationality,
+                                      edit: editState,
+                                      keyboardType: TextInputType.text),
+                                  infos(
+                                      height: height,
+                                      width: width,
+                                      title: "E-mail",
+                                      controller: _email,
+                                      edit: false,
+                                      keyboardType: TextInputType.emailAddress),
+                                  infos(
+                                      height: height,
+                                      width: width,
+                                      title: "Phone",
+                                      controller: _phone,
+                                      edit: editState,
+                                      keyboardType: TextInputType.phone),
+                                  infos(
+                                      height: height,
+                                      width: width,
+                                      title: "Blood Group",
+                                      controller: _bloodGroup,
+                                      edit: editState,
+                                      keyboardType: TextInputType.text),
+                                  infos(
+                                      height: height,
+                                      width: width,
+                                      title: "Weight",
+                                      controller: _weight,
+                                      edit: editState,
+                                      keyboardType:
+                                          const TextInputType.numberWithOptions(
+                                              decimal: true)),
+                                  infos(
+                                      height: height,
+                                      width: width,
+                                      title: "Height",
+                                      controller: _height,
+                                      edit: editState,
+                                      keyboardType:
+                                          const TextInputType.numberWithOptions(
+                                              decimal: true)),
                                 ],
                               ),
                             ),
@@ -206,14 +356,19 @@ class _InfoPageState extends State<InfoPage> {
         });
   }
 
-  Row infos(double height, double width, String title, String data,
-      TextEditingController controller, bool edit) {
+  Row infos(
+      {required double height,
+      required double width,
+      required String title,
+      required TextEditingController controller,
+      required bool edit,
+      required keyboardType}) {
     return Row(
       children: [
         Container(
             alignment: Alignment.centerLeft,
             height: 0.06 * height,
-            width: 0.2 * width,
+            width: 0.3 * width,
             child: Text(
               title,
               style: const TextStyle(
@@ -225,8 +380,10 @@ class _InfoPageState extends State<InfoPage> {
           child: SizedBox(
             height: 0.06 * height,
             child: TextFormField(
+              keyboardType: keyboardType,
               controller: controller,
               style: const TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: 16,
                 color: Colors.white,
               ),
@@ -254,11 +411,6 @@ class _InfoPageState extends State<InfoPage> {
                   ),
                 ),
               ),
-              validator: RequiredValidator(errorText: title + " is required"),
-              onSaved: (fullName) => _fullName = fullName!,
-              onChanged: (text) {
-                controller.text = text;
-              },
             ),
           ),
         ),

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 
 Future<void> checkAuth() async {
@@ -74,11 +74,18 @@ Future<void> userSetup(
     "displayName": displayname,
     'email': email,
     "phone": phone,
+    "id": "",
+    "height": "",
+    "weight": "",
+    "bloodGroup": "",
+    "dob": "",
+    "address": "",
+    "nationality": "",
     "photoUrl":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def",
     "backgroundImg":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fbgp.jpg?alt=media&token=d01db687-8784-4d82-a64b-14abd021e602"
-  });
+  }, SetOptions(merge: true));
 }
 
 Future<void> updateData(
@@ -92,6 +99,7 @@ Future<void> updateData(
 Future<String> pickSaveImage(String img) async {
   var user = FirebaseAuth.instance.currentUser;
   XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  EasyLoading.show(maskType: EasyLoadingMaskType.black);
   final _image = File(image!.path);
   final ref =
       FirebaseStorage.instance.ref().child("userImages").child(user!.uid + img);

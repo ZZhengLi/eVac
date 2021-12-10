@@ -3,19 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:vaccinationapp/home_page.dart';
 import 'package:vaccinationapp/user/sign_up_page.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignInPage extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+  SignInPage({Key? key}) : super(key: key);
+  late String _email, _password;
 
-  @override
-  State<SignInPage> createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -82,36 +78,46 @@ class _SignInPageState extends State<SignInPage> {
               width: 0.7 * width,
               child: Column(children: [
                 //imput email box
-                TextField(
-                  controller: _emailController,
-                  style: const TextStyle(fontSize: 14),
-                  decoration: InputDecoration(
-                      hintText: "Email",
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      )),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        style: const TextStyle(fontSize: 14),
+                        decoration: InputDecoration(
+                            hintText: "Email",
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                        validator: EmailValidator(
+                            errorText: "Enter a valid email address"),
+                        onSaved: (email) => _email = email!,
+                      ),
+                      SizedBox(
+                        height: 0.03 * height,
+                      ),
+                      //input password box
+                      TextFormField(
+                        style: const TextStyle(fontSize: 14),
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            hintText: "Password",
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                        onSaved: (password) => _password = password!,
+                        onFieldSubmitted: (v) async {
+                          await signInMethod(context);
+                        },
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 0.03 * height,
-                ),
-                //input password box
-                TextField(
-                  controller: _passwordController,
-                  style: const TextStyle(fontSize: 14),
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      hintText: "Password",
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      )),
-                  onSubmitted: (v) async {
-                    await signInMethod(context);
-                  },
-                )
               ]),
             ),
             Row(
@@ -158,15 +164,20 @@ class _SignInPageState extends State<SignInPage> {
   //Sign in with firebase and loading animation
   Future<void> signInMethod(BuildContext context) async {
     EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text, password: _passwordController.text);
-      EasyLoading.dismiss();
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return HomePage();
-      }));
-    } catch (e) {
-      EasyLoading.showError(e.toString());
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      EasyLoading.show(maskType: EasyLoadingMaskType.black);
+      try {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: _email, password: _password);
+        EasyLoading.dismiss();
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) {
+          return HomePage();
+        }));
+      } catch (e) {
+        EasyLoading.showError(e.toString());
+      }
     }
   }
 }

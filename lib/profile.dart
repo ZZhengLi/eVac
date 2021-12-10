@@ -5,14 +5,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/info_page.dart';
 
-class ProfilePage extends StatefulWidget {
-  ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -22,7 +17,6 @@ class _ProfilePageState extends State<ProfilePage> {
     final uid = user!.uid;
     final Stream _usersStream =
         FirebaseFirestore.instance.doc("Users/$uid").snapshots();
-    EasyLoading.show(maskType: EasyLoadingMaskType.black);
     return StreamBuilder<dynamic>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -55,9 +49,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     IconButton(
                       icon: const Icon(Icons.list),
                       onPressed: () {
+                        EasyLoading.show(maskType: EasyLoadingMaskType.black);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return InfoPage();
+                          return const InfoPage();
                         }));
                       },
                     )
@@ -93,6 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                               await pickSaveImage("avatar");
                                           await changeImg(
                                               imgUrl.toString(), "photoUrl");
+                                          EasyLoading.dismiss();
                                         },
                                       ),
                                       ListTile(
@@ -104,8 +100,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Navigator.pop(context);
                                           var imgUrl =
                                               await pickSaveImage("bgi");
+
                                           await changeImg(imgUrl.toString(),
                                               "backgroundImg");
+                                          EasyLoading.dismiss();
                                         },
                                       ),
                                     ],

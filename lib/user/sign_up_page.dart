@@ -41,7 +41,7 @@ class SignUpPage extends StatelessWidget {
                         onPressed: () => Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SignInPage(),
+                              builder: (context) => SignInPage(),
                             )),
                         child: const Text(
                           "Sign In!",
@@ -80,8 +80,6 @@ class SignUpPage extends StatelessWidget {
                           keyboardType: TextInputType.phone,
                           decoration:
                               const InputDecoration(hintText: "+123487697"),
-                          validator: RequiredValidator(
-                              errorText: "Phone number is required"),
                           onSaved: (phoneNumber) => _phoneNumber = phoneNumber!,
                         ),
                         SizedBox(height: 0.025 * height),
@@ -129,7 +127,7 @@ class SignUpPage extends StatelessWidget {
                             EasyLoading.showSuccess("Sign Up Successfully!");
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const SignInPage();
+                              return SignInPage();
                             }));
                           } catch (e) {
                             EasyLoading.showError(e.toString());

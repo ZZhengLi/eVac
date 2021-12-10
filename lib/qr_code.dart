@@ -1,17 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vaccinationapp/scanner.dart';
 
-class QrCode extends StatefulWidget {
+class QrCode extends StatelessWidget {
   QrCode({Key? key}) : super(key: key);
 
-  @override
-  _QrCodeState createState() => _QrCodeState();
-}
-
-class _QrCodeState extends State<QrCode> {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;

@@ -6,22 +6,18 @@ import 'package:vaccinationapp/profile.dart';
 import 'package:vaccinationapp/setting.dart';
 import 'package:vaccinationapp/user/sign_in_page.dart';
 
-class drawer extends StatefulWidget {
-  drawer({Key? key}) : super(key: key);
+class DrawerPage extends StatelessWidget {
+  const DrawerPage({Key? key}) : super(key: key);
 
-  @override
-  _drawerState createState() => _drawerState();
-}
-
-class _drawerState extends State<drawer> {
   @override
   Widget build(BuildContext context) {
+    EasyLoading.show(maskType: EasyLoadingMaskType.black);
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
     final uid = user!.uid;
     final Stream _usersStream =
         FirebaseFirestore.instance.doc("Users/$uid").snapshots();
-    EasyLoading.show(maskType: EasyLoadingMaskType.black);
+
     return Drawer(
       child: Column(
         children: [
@@ -82,10 +78,11 @@ class _drawerState extends State<drawer> {
                   title: const Text("Profile",
                       style: TextStyle(color: Colors.white)),
                   onTap: () {
+                    EasyLoading.show(maskType: EasyLoadingMaskType.black);
                     Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return ProfilePage();
+                      return const ProfilePage();
                     }));
                   },
                 ),
@@ -97,6 +94,7 @@ class _drawerState extends State<drawer> {
                     title: const Text("Setting",
                         style: TextStyle(color: Colors.white)),
                     onTap: () {
+                      EasyLoading.show(maskType: EasyLoadingMaskType.black);
                       Navigator.pop(context);
                       Navigator.push(
                         context,
@@ -129,7 +127,7 @@ class _drawerState extends State<drawer> {
                   // signOut();
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
-                    return const SignInPage();
+                    return SignInPage();
                   }));
                   EasyLoading.dismiss();
                 },

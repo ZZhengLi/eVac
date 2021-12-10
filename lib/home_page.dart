@@ -13,16 +13,11 @@ import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
 import 'package:vaccinationapp/widgets/svg_asset.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   HomePage({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               },
             )
           ]),
-      drawer: drawer(),
+      drawer: const DrawerPage(),
       body: SafeArea(
         child: ListView(
           physics: const BouncingScrollPhysics(),
