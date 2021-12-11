@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
@@ -17,10 +18,10 @@ class _InfoPageState extends State<InfoPage> {
   late Stream _usersStream;
   late String uid;
   bool editState = false;
-  var _gender;
+  late String _gender;
+  late DateTime _dob;
   late TextEditingController _name,
       _idCard,
-      _dob,
       _address,
       _nationality,
       _email,
@@ -39,7 +40,6 @@ class _InfoPageState extends State<InfoPage> {
     FirebaseFirestore.instance.doc("Users/$uid").get().then((value) {
       _name = TextEditingController(text: value.data()!["displayName"]);
       _idCard = TextEditingController(text: value.data()!["id"]);
-      _dob = TextEditingController(text: value.data()!["dob"]);
       _address = TextEditingController(text: value.data()!["address"]);
       _nationality = TextEditingController(text: value.data()!["nationality"]);
       _email = TextEditingController(text: value.data()!["email"]);
@@ -48,6 +48,7 @@ class _InfoPageState extends State<InfoPage> {
       _weight = TextEditingController(text: value.data()!["weight"]);
       _height = TextEditingController(text: value.data()!["height"]);
       _gender = value.data()!["gender"];
+      _dob = value.data()!["dob"].toDate();
     });
   }
 
@@ -104,7 +105,7 @@ class _InfoPageState extends State<InfoPage> {
                                 "displayName": _name.text,
                                 "id": _idCard.text,
                                 "gender": _gender,
-                                "dob": _dob.text,
+                                "dob": Timestamp.fromDate(_dob),
                                 "address": _address.text,
                                 "nationality": _nationality.text,
                                 "phone": _phone.text,
@@ -231,13 +232,57 @@ class _InfoPageState extends State<InfoPage> {
                                       ),
                                     ],
                                   ),
-                                  infos(
-                                      height: height,
-                                      width: width,
-                                      title: "DOB",
-                                      controller: _dob,
-                                      edit: editState,
-                                      keyboardType: TextInputType.datetime),
+                                  Row(
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.centerLeft,
+                                          height: 0.06 * height,
+                                          width: 0.3 * width,
+                                          child: const Text(
+                                            "DOB",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                      Expanded(
+                                        child: Material(
+                                          color: editState
+                                              ? const Color(0xff263950)
+                                              : Colors.transparent,
+                                          child: InkWell(
+                                              onTap: editState
+                                                  ? () {
+                                                      DatePicker.showDatePicker(
+                                                          context,
+                                                          showTitleActions:
+                                                              true,
+                                                          minTime: DateTime(
+                                                              1900, 1, 1),
+                                                          maxTime:
+                                                              DateTime.now(),
+                                                          onChanged: (date) {
+                                                        _dob = date;
+                                                      }, onConfirm: (date) {
+                                                        _dob = date;
+                                                      },
+                                                          currentTime: _dob,
+                                                          locale:
+                                                              LocaleType.en);
+                                                    }
+                                                  : null,
+                                              child: Text(
+                                                "${_dob.year.toString()}-${_dob.month.toString()}-${_dob.day.toString()}",
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                  color: Colors.white,
+                                                ),
+                                              )),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   SizedBox(height: 0.015 * height),
                                   Row(
                                     children: [
