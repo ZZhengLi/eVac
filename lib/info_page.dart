@@ -143,7 +143,10 @@ class _InfoPageState extends State<InfoPage> {
                               0.1 * width, 0.07 * height, 0, 0),
                           child: const Text(
                             "Personal Info",
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                                color: Color(0xff515979),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500),
                           )),
                     ],
                   ),
@@ -163,15 +166,11 @@ class _InfoPageState extends State<InfoPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Name",
                                       controller: _name,
                                       edit: editState,
                                       keyboardType: TextInputType.name),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "ID Card",
                                       controller: _idCard,
                                       edit: editState,
@@ -343,36 +342,26 @@ class _InfoPageState extends State<InfoPage> {
                                     ],
                                   ),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Nationality",
                                       controller: _nationality,
                                       edit: editState,
                                       keyboardType: TextInputType.text),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "E-mail",
                                       controller: _email,
                                       edit: false,
                                       keyboardType: TextInputType.emailAddress),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Phone",
                                       controller: _phone,
                                       edit: editState,
                                       keyboardType: TextInputType.phone),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Blood Group",
                                       controller: _bloodGroup,
                                       edit: editState,
                                       keyboardType: TextInputType.text),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Weight",
                                       controller: _weight,
                                       edit: editState,
@@ -380,8 +369,6 @@ class _InfoPageState extends State<InfoPage> {
                                           const TextInputType.numberWithOptions(
                                               decimal: true)),
                                   infos(
-                                      height: height,
-                                      width: width,
                                       title: "Height",
                                       controller: _height,
                                       edit: editState,
@@ -402,12 +389,12 @@ class _InfoPageState extends State<InfoPage> {
   }
 
   Row infos(
-      {required double height,
-      required double width,
-      required String title,
+      {required String title,
       required TextEditingController controller,
       required bool edit,
       required keyboardType}) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Row(
       children: [
         Container(

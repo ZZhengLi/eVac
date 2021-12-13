@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Scanner extends StatefulWidget {
   const Scanner({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class Scanner extends StatefulWidget {
 }
 
 class _ScannerState extends State<Scanner> {
+  bool flash = false;
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -33,87 +35,87 @@ class _ScannerState extends State<Scanner> {
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
-          Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                  else
-                    const Text('Scan a code'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.toggleFlash();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getFlashStatus(),
-                              builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
-                              },
-                            )),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.flipCamera();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getCameraInfo(),
-                              builder: (context, snapshot) {
-                                if (snapshot.data != null) {
-                                  return Text(
-                                      'Camera facing ${describeEnum(snapshot.data!)}');
-                                } else {
-                                  return const Text('loading');
-                                }
-                              },
-                            )),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await controller?.pauseCamera();
-                          },
-                          child: const Text('pause',
-                              style: TextStyle(fontSize: 20)),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await controller?.resumeCamera();
-                          },
-                          child: const Text('resume',
-                              style: TextStyle(fontSize: 20)),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          )
+          // Expanded(
+          //   flex: 1,
+          //   child: FittedBox(
+          //     fit: BoxFit.contain,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //       children: <Widget>[
+          //         if (result != null)
+          //           Text(
+          //               'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+          //         else
+          //           const Text('Scan a code'),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: <Widget>[
+          //             Container(
+          //               margin: const EdgeInsets.all(8),
+          //               child: ElevatedButton(
+          //                   onPressed: () async {
+          //                     await controller?.toggleFlash();
+          //                     setState(() {});
+          //                   },
+          //                   child: FutureBuilder(
+          //                     future: controller?.getFlashStatus(),
+          //                     builder: (context, snapshot) {
+          //                       return Text('Flash: ${snapshot.data}');
+          //                     },
+          //                   )),
+          //             ),
+          //             Container(
+          //               margin: const EdgeInsets.all(8),
+          //               child: ElevatedButton(
+          //                   onPressed: () async {
+          //                     await controller?.flipCamera();
+          //                     setState(() {});
+          //                   },
+          //                   child: FutureBuilder(
+          //                     future: controller?.getCameraInfo(),
+          //                     builder: (context, snapshot) {
+          //                       if (snapshot.data != null) {
+          //                         return Text(
+          //                             'Camera facing ${describeEnum(snapshot.data!)}');
+          //                       } else {
+          //                         return const Text('loading');
+          //                       }
+          //                     },
+          //                   )),
+          //             )
+          //           ],
+          //         ),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: <Widget>[
+          //             Container(
+          //               margin: const EdgeInsets.all(8),
+          //               child: ElevatedButton(
+          //                 onPressed: () async {
+          //                   await controller?.pauseCamera();
+          //                 },
+          //                 child: const Text('pause',
+          //                     style: TextStyle(fontSize: 20)),
+          //               ),
+          //             ),
+          //             Container(
+          //               margin: const EdgeInsets.all(8),
+          //               child: ElevatedButton(
+          //                 onPressed: () async {
+          //                   await controller?.resumeCamera();
+          //                 },
+          //                 child: const Text('resume',
+          //                     style: TextStyle(fontSize: 20)),
+          //               ),
+          //             )
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
@@ -127,16 +129,70 @@ class _ScannerState extends State<Scanner> {
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: scanArea),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return Stack(
+      children: [
+        QRView(
+          key: qrKey,
+          onQRViewCreated: _onQRViewCreated,
+          overlay: QrScannerOverlayShape(
+              borderColor: Colors.red,
+              borderRadius: 10,
+              borderLength: 30,
+              borderWidth: 10,
+              cutOutSize: scanArea),
+          onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+        ),
+        SafeArea(
+          child: Column(
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                IconButton(
+                  icon: Icon(
+                    flash ? Icons.flash_on : Icons.flash_off,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    await controller?.toggleFlash();
+                    setState(() {
+                      if (flash) {
+                        flash = false;
+                      } else {
+                        flash = true;
+                      }
+                    });
+                  },
+                ),
+                SizedBox(
+                  width: 0.1 * width,
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.flip_camera_ios,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    await controller?.flipCamera();
+                  },
+                ),
+              ]),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0.05 * width, 0.04 * height, 0, 0),
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              navigator?.pop();
+            },
+          ),
+        )
+      ],
     );
   }
 
@@ -144,10 +200,16 @@ class _ScannerState extends State<Scanner> {
     setState(() {
       this.controller = controller;
     });
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
       setState(() {
         result = scanData;
       });
+      if (await canLaunch(result!.code.toString())) {
+        await launch(result!.code.toString(),
+            forceSafariVC: true, forceWebView: true, enableJavaScript: true);
+      } else {
+        throw 'Could not launch ${result!.code.toString()}';
+      }
     });
   }
 

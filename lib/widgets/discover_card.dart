@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vaccinationapp/widgets/icons.dart';
@@ -41,14 +40,14 @@ class DiscoverCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(26),
             gradient: LinearGradient(
               colors: [
-                gradientStartColor ?? Color(0xff441DFC),
-                gradientEndColor ?? Color(0xff4E81EB),
+                gradientStartColor ?? const Color(0xff441DFC),
+                gradientEndColor ?? const Color(0xff4E81EB),
               ],
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
             ),
           ),
-          child: Container(
+          child: SizedBox(
             height: 176.w,
             width: 305.w,
             child: Stack(
@@ -105,21 +104,6 @@ class DiscoverCard extends StatelessWidget {
                               : Container(),
                         ],
                       ),
-                      Row(
-                        children: [
-                          SvgAsset(
-                            assetName: AssetName.headphone,
-                            height: 24.w,
-                            width: 24.w,
-                          ),
-                          SizedBox(width: 24.w),
-                          SvgAsset(
-                            assetName: AssetName.tape,
-                            height: 24.w,
-                            width: 24.w,
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),

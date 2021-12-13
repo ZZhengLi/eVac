@@ -62,7 +62,7 @@ class QrCode extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Scanner();
+                    return const Scanner();
                   }));
                 },
               ),

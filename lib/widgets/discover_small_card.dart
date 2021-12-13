@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vaccinationapp/widgets/icons.dart';
@@ -11,10 +10,7 @@ class DiscoverSmallCard extends StatelessWidget {
   final Color? gradientEndColor;
   final double? height;
   final double? width;
-  final Widget? vectorBottom;
-  final Widget? vectorTop;
   final double? borderRadius;
-  final Widget? icon;
   final Function? onTap;
   const DiscoverSmallCard(
       {Key? key,
@@ -24,10 +20,7 @@ class DiscoverSmallCard extends StatelessWidget {
       this.gradientEndColor,
       this.height,
       this.width,
-      this.vectorBottom,
-      this.vectorTop,
       this.borderRadius,
-      this.icon,
       this.onTap})
       : super(key: key);
 
@@ -35,14 +28,14 @@ class DiscoverSmallCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap:()=> onTap ?? () {},
+      onTap: () => onTap ?? () {},
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             colors: [
-              gradientStartColor ?? Color(0xff441DFC),
-              gradientEndColor ?? Color(0xff4E81EB),
+              gradientStartColor ?? const Color(0xff441DFC),
+              gradientEndColor ?? const Color(0xff4E81EB),
             ],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
@@ -50,7 +43,7 @@ class DiscoverSmallCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: 125.w,
               width: 150.w,
             ),
@@ -64,7 +57,8 @@ class DiscoverSmallCard extends StatelessWidget {
                     SizedBox(
                       height: 125.w,
                       width: 150.w,
-                      child: SvgAsset(assetName: AssetName.vectorSmallBottom),
+                      child: const SvgAsset(
+                          assetName: AssetName.vectorSmallBottom),
                     ),
                     SizedBox(
                       child: SvgAsset(
@@ -93,16 +87,6 @@ class DiscoverSmallCard extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
-                    Row(
-                      children: [
-                        icon ??
-                            SvgAsset(
-                              assetName: AssetName.headphone,
-                              height: 24.w,
-                              width: 24.w,
-                            ),
-                      ],
-                    )
                   ],
                 ),
               ),

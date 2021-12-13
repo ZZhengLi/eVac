@@ -125,8 +125,10 @@ class ProfilePage extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(
                             0.1 * width, 0.03 * height, 0, 0),
                         child: const Text("Personal Info",
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 12))),
+                            style: TextStyle(
+                                color: Color(0xff515979),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500))),
                   ],
                 ),
                 Container(
@@ -152,12 +154,12 @@ class ProfilePage extends StatelessWidget {
                         width: 0.045 * width,
                       ),
                       infoBox(width, "Weight(kg)", snapshot.data["weight"],
-                          Icons.accessibility_new, Colors.greenAccent),
+                          Icons.accessibility_new, const Color(0xff13DEA0)),
                       SizedBox(
                         width: 0.045 * width,
                       ),
                       infoBox(width, "Height (cm)", snapshot.data["height"],
-                          Icons.accessibility, Colors.orange[300])
+                          Icons.accessibility, const Color(0xffF0B31A))
                     ],
                   ),
                 ),

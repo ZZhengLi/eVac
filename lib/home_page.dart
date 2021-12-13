@@ -1,17 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/qr_code.dart';
-import 'package:vaccinationapp/widgets/category_boxes.dart';
-import 'package:vaccinationapp/widgets/drawer.dart';
-import 'package:vaccinationapp/widgets/icons.dart';
+import 'package:vaccinationapp/drawer.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
-import 'package:vaccinationapp/widgets/svg_asset.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
@@ -54,13 +50,6 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontSize: 14.w),
                   ),
-                  GestureDetector(
-                      onTap: onSeeAllTapped,
-                      child: Text("See All",
-                          style: TextStyle(
-                              color: const Color(0xff4A80F0),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.w)))
                 ],
               ),
             ),
@@ -125,11 +114,6 @@ class HomePage extends StatelessWidget {
                     title: "Insomnia",
                     gradientStartColor: const Color(0xffFC67A7),
                     gradientEndColor: const Color(0xffF6815B),
-                    icon: SvgAsset(
-                      assetName: AssetName.tape,
-                      height: 24.w,
-                      width: 24.w,
-                    ),
                   ),
                   DiscoverSmallCard(
                     onTap: () {},
@@ -140,11 +124,6 @@ class HomePage extends StatelessWidget {
                   DiscoverSmallCard(
                     onTap: () {},
                     title: "Tips For Sleeping",
-                    icon: SvgAsset(
-                      assetName: AssetName.tape,
-                      height: 24.w,
-                      width: 24.w,
-                    ),
                   ),
                 ],
               ),

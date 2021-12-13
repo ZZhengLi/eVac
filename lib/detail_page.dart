@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/widgets/icons.dart';
@@ -23,7 +22,7 @@ class _DetailPageState extends State<DetailPage> {
         child: Stack(
           children: [
             ListView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               children: [
                 SizedBox(
                   height: 66.h,
@@ -92,41 +91,6 @@ class _DetailPageState extends State<DetailPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 32.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 28.w),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 56.w,
-                        width: 56.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white.withOpacity(0.1),
-                        ),
-                        child: Center(
-                            child: SvgAsset(
-                                assetName: AssetName.headphone,
-                                height: 28.w,
-                                width: 28.w)),
-                      ),
-                      SizedBox(width: 16.w),
-                      Container(
-                        height: 56.w,
-                        width: 56.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white.withOpacity(0.1),
-                        ),
-                        child: Center(
-                            child: SvgAsset(
-                                assetName: AssetName.tape,
-                                height: 28.w,
-                                width: 28.w)),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(height: 46.h),
                 Padding(
                   padding:
@@ -141,62 +105,6 @@ class _DetailPageState extends State<DetailPage> {
                 )
               ],
             ),
-            Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  color: const Color(0xff121421),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 22.w, right: 22.w, top: 20.h, bottom: 10.h),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            borderRadius: BorderRadius.circular(360),
-                            onTap: onBackIconTapped,
-                            child: Container(
-                              height: 35.w,
-                              width: 35.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(360),
-                              ),
-                              child: Center(
-                                child: SvgAsset(
-                                  assetName: AssetName.back,
-                                  height: 20.w,
-                                  width: 20.w,
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            borderRadius: BorderRadius.circular(360),
-                            onTap: onHeartIconTapped,
-                            child: Container(
-                              height: 35.w,
-                              width: 35.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(360),
-                              ),
-                              child: Center(
-                                child: SvgAsset(
-                                  assetName: AssetName.heart,
-                                  height: 24.w,
-                                  width: 24.w,
-                                  color: isHeartIconTapped!
-                                      ? Colors.red
-                                      : Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
