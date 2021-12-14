@@ -21,54 +21,58 @@ class QrCode extends StatelessWidget {
         backgroundColor: const Color(0xff121421),
       ),
       backgroundColor: const Color(0xff121421),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            top: 0.1 * height,
-            child: Container(
-                color: Colors.white,
-                child: QrImage(
-                  data: uid,
-                  size: 0.8 * width,
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              top: 0.1 * height,
+              child: Container(
+                  color: Colors.white,
+                  child: QrImage(
+                    data: uid,
+                    size: 0.8 * width,
+                  )),
+            ),
+            Positioned(
+                bottom: 0.2 * height,
+                child: const Text(
+                  "Scan a QR code for more information ",
+                  style: TextStyle(color: Colors.white),
                 )),
-          ),
-          Positioned(
-              bottom: 0.2 * height,
-              child: const Text(
-                "Scan a QR code for more information ",
-                style: TextStyle(color: Colors.white),
-              )),
-          Positioned(
-            bottom: 0.05 * height,
-            child: SizedBox(
-              width: 0.85 * width,
-              height: 0.075 * height,
-              child: ElevatedButton(
-                style: (ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.qr_code_scanner_sharp,
-                      color: Color(0xff121421),
-                    ),
-                    Text(
-                      "Scan QR Code",
-                      style: TextStyle(color: Color(0xff121421)),
-                    ),
-                  ],
+            Positioned(
+              bottom: 0.05 * height,
+              child: SizedBox(
+                width: 0.85 * width,
+                height: 0.075 * height,
+                child: ElevatedButton(
+                  style: (ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.white))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.qr_code_scanner_sharp,
+                        color: Color(0xff121421),
+                      ),
+                      Text(
+                        "Scan QR Code",
+                        style: TextStyle(color: Color(0xff121421)),
+                      ),
+                    ],
+                  ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Scanner();
+                    }));
+                  },
                 ),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const Scanner();
-                  }));
-                },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -30,10 +30,10 @@ class _DetailPageState extends State<DetailPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 28.w),
                   child: Hero(
-                    tag: "sleepMeditation",
+                    tag: "latestVaccination",
                     child: Material(
                       color: Colors.transparent,
-                      child: Text("Sleep Meditation",
+                      child: Text("Latest Vaccination",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 34.w,

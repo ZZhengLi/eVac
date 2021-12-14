@@ -206,11 +206,11 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 0.01 * width),
           Text(
             name,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           SizedBox(height: 0.01 * width),
           Text(data,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold))

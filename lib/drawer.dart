@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/profile.dart';
 import 'package:vaccinationapp/setting.dart';
 import 'package:vaccinationapp/user/sign_in_page.dart';
@@ -47,12 +48,10 @@ class DrawerPage extends StatelessWidget {
                           ),
                           accountEmail: Text(snapshot.data['email']),
                           currentAccountPicture: CircleAvatar(
-                              // foregroundColor: Colors.white,
                               backgroundColor: Colors.white,
                               backgroundImage:
                                   (NetworkImage(snapshot.data['photoUrl']))),
                           decoration: BoxDecoration(
-                              // color: Color(0xff121421),
                               image: DecorationImage(
                                   image: NetworkImage(
                                       snapshot.data['backgroundImg']),
@@ -123,13 +122,49 @@ class DrawerPage extends StatelessWidget {
                 title: const Text("Sign Out",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  EasyLoading.show();
-                  // signOut();
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return SignInPage();
-                  }));
-                  EasyLoading.dismiss();
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true, // user must tap button!
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Confirm',
+                            style: TextStyle(color: Colors.white)),
+                        content: const Text('Are you sure to sign out?',
+                            style: TextStyle(color: Colors.white)),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color(0xff263950))),
+                            child: const Text('YES'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              EasyLoading.show();
+                              signOut();
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return SignInPage();
+                              }));
+                              EasyLoading.dismiss();
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color(0xff263950))),
+                            child: const Text('NO'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                        backgroundColor: const Color(0xff121421),
+                        elevation: 20,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      );
+                    },
+                  );
                 },
               ),
             ),

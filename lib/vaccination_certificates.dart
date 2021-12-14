@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/certificate_detail.dart';
+import 'dart:math';
 
 class Vaccinations extends StatefulWidget {
   Vaccinations({Key? key}) : super(key: key);
@@ -14,15 +15,12 @@ class Vaccinations extends StatefulWidget {
 class _VaccinationsState extends State<Vaccinations> {
   var uid = FirebaseAuth.instance.currentUser!.uid;
 
-  late List myVaccinations;
-  late String id, name;
-  final vaccines = FirebaseFirestore.instance.collection("Vaccinations");
-
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance.doc("Users/$uid").get().then((snapshot) {
-      myVaccinations = snapshot.data()!["vaccinations"];
-    });
+    final vaccines = FirebaseFirestore.instance
+        .doc("Users/$uid")
+        .collection("Vaccinations")
+        .orderBy("date", descending: true);
     return StreamBuilder(
       stream: vaccines.snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -35,41 +33,65 @@ class _VaccinationsState extends State<Vaccinations> {
           return const Text("Loading");
         }
         EasyLoading.dismiss();
-        // return ListView.builder(
-        //     itemCount: myVaccinations.length,
-        //     itemBuilder: (context, index) {
-              return ListView(
-                children: [
-                  ...snapshot.data!.docs
-                      .where((QueryDocumentSnapshot element) =>
-                          element["id"].toString().contains("abc"))
-                      .map((QueryDocumentSnapshot data) {
-                    final String id = data["id"];
-                    final String name = data["name"];
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text("Vaccinations"),
+            elevation: 0,
+            backgroundColor: const Color(0xff121421),
+          ),
+          backgroundColor: const Color(0xff121421),
+          body: SafeArea(
+            child: ListView(
+              children: [
+                ...snapshot.data!.docs.map((QueryDocumentSnapshot data) {
+                  final String id = data["id"];
+                  final String name = data["name"];
+                  final DateTime date = data["date"].toDate();
 
-                    return ListTile(
-                      title: Text(name),
-                      subtitle: Text(id),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CertificateDetail(data: data)));
-                      },
-                    );
-                  })
-                ],
-              );
-      //       });
+                  return date.isAfter(DateTime(2000))
+                      ? InkWell(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Card(
+                              color: const Color(0xff263950),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                      title: Text(name,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                          )),
+                                      subtitle: Text(id,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          ))),
+                                  ListTile(
+                                      title: Text(
+                                          "${date.year.toString()}-${date.month.toString()}-${date.day.toString()}",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          )))
+                                ],
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CertificateDetail(data: data)));
+                          },
+                        )
+                      : Container();
+                })
+              ],
+            ),
+          ),
+        );
       },
     );
   }
 }
-// ListView.builder(
-//             itemCount: vaccinations.length,
-//             itemBuilder: (context, index) {
-//               return ListTile(
-//                 title: Text(vaccinations[index]),
-//               );
-//             })

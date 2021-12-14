@@ -78,15 +78,27 @@ Future<void> userSetup(
     "height": "",
     "weight": "",
     "bloodGroup": "",
-    "dob": "",
+    "dob": Timestamp.fromDate(DateTime.now()),
     "address": "",
     "nationality": "",
-    "vaccination": [],
+    "gender": "Male",
     "photoUrl":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def",
     "backgroundImg":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fbgp.jpg?alt=media&token=d01db687-8784-4d82-a64b-14abd021e602"
   }, SetOptions(merge: true));
+  await FirebaseFirestore.instance
+      .doc("Users/$uid")
+      .collection("Vaccinations")
+      .add({
+    "date": Timestamp.fromDate(DateTime(1900)),
+    "id": "default",
+    "name": "default"
+  });
+  await FirebaseFirestore.instance
+      .doc("Users/$uid")
+      .collection("Appointment")
+      .add({"time": Timestamp.fromDate(DateTime(1900))});
 }
 
 Future<void> updateData(
