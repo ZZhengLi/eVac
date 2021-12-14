@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
                                         onTap: onNextAppointmentTapped,
                                         title: "Next Appointment",
                                         subtitle:
-                                            "Your next appointment is on ${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}",
+                                            "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}",
                                         gradientStartColor:
                                             const Color(0xffFC67A7),
                                         gradientEndColor:
