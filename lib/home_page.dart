@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:vaccinationapp/detail_page.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/drawer.dart';
+import 'package:vaccinationapp/vaccination_certificates.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
 
@@ -104,7 +107,7 @@ class HomePage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   DiscoverSmallCard(
-                    onTap: () {},
+                    onTap: onSeeAllTapped,
                     title: "Calming Sounds",
                     gradientStartColor: const Color(0xff13DEA0),
                     gradientEndColor: const Color(0xff06B782),
@@ -134,7 +137,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void onSeeAllTapped() {}
+  void onSeeAllTapped() {
+    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    Get.to(() => Vaccinations());
+  }
 
   void onSleepMeditationTapped() {
     Get.to(() => const DetailPage(), transition: Transition.rightToLeft);

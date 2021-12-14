@@ -81,6 +81,7 @@ Future<void> userSetup(
     "dob": "",
     "address": "",
     "nationality": "",
+    "vaccination": [],
     "photoUrl":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def",
     "backgroundImg":

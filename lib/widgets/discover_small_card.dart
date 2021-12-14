@@ -28,7 +28,7 @@ class DiscoverSmallCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () => onTap ?? () {},
+      onTap: () => onTap!(),
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
