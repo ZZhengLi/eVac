@@ -17,6 +17,12 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Detail"),
+        elevation: 0,
+        backgroundColor: const Color(0xff121421),
+      ),
       backgroundColor: const Color(0xff121421),
       body: SafeArea(
         child: Stack(
@@ -24,9 +30,6 @@ class _DetailPageState extends State<DetailPage> {
             ListView(
               physics: const BouncingScrollPhysics(),
               children: [
-                SizedBox(
-                  height: 66.h,
-                ),
                 Padding(
                   padding: EdgeInsets.only(left: 28.w),
                   child: Hero(

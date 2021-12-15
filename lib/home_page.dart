@@ -89,66 +89,53 @@ class HomePage extends StatelessWidget {
                           stream: appointment,
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot2) {
-                            if (snapshot1.hasError) {
+                            if (snapshot1.hasError || snapshot2.hasError) {
                               EasyLoading.dismiss();
                               return const Text('Something went wrong');
                             }
 
                             if (snapshot1.connectionState ==
-                                ConnectionState.waiting) {
+                                    ConnectionState.waiting ||
+                                snapshot2.connectionState ==
+                                    ConnectionState.waiting) {
                               return const Text("Loading");
-                            }
-                            if (snapshot2.hasError) {
-                              EasyLoading.dismiss();
-                              return const Text('Something went wrong');
                             }
 
-                            if (snapshot2.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Text("Loading");
-                            }
                             data1 = snapshot1.data.docs[0];
                             data2 = snapshot2.data.docs[0];
 
                             return Row(
                               children: [
-                                data1["date"].toDate().isAfter(DateTime(2000))
-                                    ? DiscoverCard(
-                                        tag: "latestVaccination",
-                                        onTap: onLatestVaccinationTapped,
-                                        title: "Latest Vaccination",
-                                        subtitle:
-                                            "${data1["name"]}\n\n\n\n${data1["date"].toDate().year}-${data1["date"].toDate().month}-${data1["date"].toDate().day}",
-                                      )
-                                    : DiscoverCard(
-                                        tag: "latestVaccination",
-                                        onTap: () {},
-                                        title: "Latest Vaccination",
-                                        subtitle:
-                                            "You haven't taken any vaccination",
-                                      ),
+                                DiscoverCard(
+                                  tag: "latestVaccination",
+                                  onTap: data1["date"]
+                                          .toDate()
+                                          .isAfter(DateTime(2000))
+                                      ? onLatestVaccinationTapped
+                                      : () {},
+                                  title: "Latest Vaccination",
+                                  subtitle: data1["date"]
+                                          .toDate()
+                                          .isAfter(DateTime(2000))
+                                      ? "${data1["name"]}\n\n\n\n${data1["date"].toDate().year}-${data1["date"].toDate().month}-${data1["date"].toDate().day}"
+                                      : "You haven't taken any vaccination",
+                                ),
                                 SizedBox(width: 20.w),
-                                data2["time"].toDate().isAfter(DateTime.now())
-                                    ? DiscoverCard(
-                                        onTap: onNextAppointmentTapped,
-                                        title: "Next Appointment",
-                                        subtitle:
-                                            "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}",
-                                        gradientStartColor:
-                                            const Color(0xffFC67A7),
-                                        gradientEndColor:
-                                            const Color(0xffF6815B),
-                                      )
-                                    : DiscoverCard(
-                                        onTap: () {},
-                                        title: "Next Appointment",
-                                        subtitle:
-                                            "You don't have any upcoming appointment",
-                                        gradientStartColor:
-                                            const Color(0xffFC67A7),
-                                        gradientEndColor:
-                                            const Color(0xffF6815B),
-                                      ),
+                                DiscoverCard(
+                                  onTap: data2["time"]
+                                          .toDate()
+                                          .isAfter(DateTime.now())
+                                      ? onNextAppointmentTapped
+                                      : () {},
+                                  title: "Next Appointment",
+                                  subtitle: data2["time"]
+                                          .toDate()
+                                          .isAfter(DateTime.now())
+                                      ? "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}"
+                                      : "You don't have any upcoming appointment",
+                                  gradientStartColor: const Color(0xffFC67A7),
+                                  gradientEndColor: const Color(0xffF6815B),
+                                ),
                               ],
                             );
                           });
@@ -194,13 +181,13 @@ class HomePage extends StatelessWidget {
                   ),
                   DiscoverSmallCard(
                     onTap: () {},
-                    title: "Vaccinations info",
+                    title: "Vaccinations Info",
                     gradientStartColor: const Color(0xffFFD541),
                     gradientEndColor: const Color(0xffF0B31A),
                   ),
                   DiscoverSmallCard(
                     onTap: () {},
-                    title: "More",
+                    title: "History Appointments",
                   ),
                 ],
               ),
