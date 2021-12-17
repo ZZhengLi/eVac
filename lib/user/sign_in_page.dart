@@ -76,49 +76,46 @@ class SignInPage extends StatelessWidget {
               alignment: Alignment.center,
               height: 0.2 * height,
               width: 0.7 * width,
-              child: Column(children: [
-                //imput email box
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        style: const TextStyle(fontSize: 14),
-                        decoration: InputDecoration(
-                            hintText: "Email",
-                            fillColor: Colors.white,
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
-                        validator: EmailValidator(
-                            errorText: "Enter a valid email address"),
-                        onSaved: (email) => _email = email!,
-                      ),
-                      SizedBox(
-                        height: 0.03 * height,
-                      ),
-                      //input password box
-                      TextFormField(
-                        style: const TextStyle(fontSize: 14),
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            hintText: "Password",
-                            fillColor: Colors.white,
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
-                        onSaved: (password) => _password = password!,
-                        onFieldSubmitted: (v) async {
-                          await signInMethod(context);
-                        },
-                      )
-                    ],
-                  ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      style: const TextStyle(fontSize: 14),
+                      decoration: InputDecoration(
+                          hintText: "Email",
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          )),
+                      validator: EmailValidator(
+                          errorText: "Enter a valid email address"),
+                      onSaved: (email) => _email = email!,
+                    ),
+                    SizedBox(
+                      height: 0.03 * height,
+                    ),
+                    //input password box
+                    TextFormField(
+                      style: const TextStyle(fontSize: 14),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Password",
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          )),
+                      onSaved: (password) => _password = password!,
+                      onFieldSubmitted: (v) async {
+                        await signInMethod(context);
+                      },
+                    )
+                  ],
                 ),
-              ]),
+              ),
             ),
             Row(
               children: [

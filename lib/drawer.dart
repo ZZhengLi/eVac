@@ -139,7 +139,8 @@ class DrawerPage extends StatelessWidget {
                             child: const Text('YES'),
                             onPressed: () {
                               Navigator.of(context).pop();
-                              EasyLoading.show();
+                              EasyLoading.show(
+                                  maskType: EasyLoadingMaskType.black);
                               signOut();
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(builder: (context) {

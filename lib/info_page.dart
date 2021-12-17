@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:vaccinationapp/firebase/firebase.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -50,6 +48,20 @@ class _InfoPageState extends State<InfoPage> {
       _gender = value.data()!["gender"];
       _dob = value.data()!["dob"].toDate();
     });
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _idCard.dispose();
+    _address.dispose();
+    _nationality.dispose();
+    _email.dispose();
+    _phone.dispose();
+    _bloodGroup.dispose();
+    _weight.dispose();
+    _height.dispose();
+    super.dispose();
   }
 
   @override

@@ -5,7 +5,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
-import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/drawer.dart';
 import 'package:vaccinationapp/vaccination_certificates.dart';
