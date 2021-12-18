@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:vaccinationapp/certificate_detail.dart';
 
 class Vaccinations extends StatefulWidget {
@@ -57,6 +58,11 @@ class _VaccinationsState extends State<Vaccinations> {
                               child: Column(
                                 children: [
                                   ListTile(
+                                      leading: SvgPicture.asset(
+                                          "assets/icons/vaccines.svg",
+                                          color: Colors.white,
+                                          height: 40,
+                                          semanticsLabel: 'vaccines'),
                                       title: Text(name,
                                           style: const TextStyle(
                                             color: Colors.white,

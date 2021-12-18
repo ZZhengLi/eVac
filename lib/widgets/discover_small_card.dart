@@ -11,6 +11,7 @@ class DiscoverSmallCard extends StatelessWidget {
   final double? height;
   final double? width;
   final double? borderRadius;
+  final Widget? icon;
   final Function? onTap;
   const DiscoverSmallCard(
       {Key? key,
@@ -21,7 +22,8 @@ class DiscoverSmallCard extends StatelessWidget {
       this.height,
       this.width,
       this.borderRadius,
-      this.onTap})
+      this.onTap,
+      this.icon})
       : super(key: key);
 
   @override
@@ -87,6 +89,11 @@ class DiscoverSmallCard extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
+                    Row(
+                      children: [
+                        icon ?? Container(),
+                      ],
+                    )
                   ],
                 ),
               ),

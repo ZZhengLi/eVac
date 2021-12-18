@@ -49,6 +49,7 @@ dependencies:
   syncfusion_flutter_pdf: ^19.3.57-beta
   path_provider: ^2.0.8
   open_file: ^3.2.1
+  form_field_validator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
