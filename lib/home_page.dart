@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
+import 'package:vaccinationapp/history_appointment.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/drawer.dart';
 import 'package:vaccinationapp/vaccination_certificates.dart';
@@ -189,7 +190,7 @@ class HomePage extends StatelessWidget {
                       gradientEndColor: const Color(0xffF0B31A),
                       icon: const Icon(Icons.info, color: Colors.white)),
                   DiscoverSmallCard(
-                      onTap: () {},
+                      onTap: onHATapped,
                       title: "History Appointments",
                       icon: const Icon(Icons.history, color: Colors.white)),
                 ],
@@ -204,6 +205,11 @@ class HomePage extends StatelessWidget {
   void onVCTapped() {
     // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => Vaccinations(), transition: Transition.zoom);
+  }
+
+  void onHATapped() {
+    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    Get.to(() => HistoryAppointments(), transition: Transition.zoom);
   }
 
   void onLatestVaccinationTapped() {

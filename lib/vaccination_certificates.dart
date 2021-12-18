@@ -36,7 +36,7 @@ class _VaccinationsState extends State<Vaccinations> {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text("Vaccinations"),
+            title: const Text("Certificates"),
             elevation: 0,
             backgroundColor: const Color(0xff121421),
           ),
@@ -71,7 +71,11 @@ class _VaccinationsState extends State<Vaccinations> {
                                       subtitle: Text(id,
                                           style: const TextStyle(
                                             color: Colors.white,
-                                          ))),
+                                          )),
+                                      trailing: const Icon(
+                                        Icons.navigate_next,
+                                        color: Colors.white,
+                                      )),
                                   ListTile(
                                       title: Text(
                                           "${date.year.toString()}-${date.month.toString()}-${date.day.toString()}",
