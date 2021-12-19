@@ -3,14 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class HistoryAppointments extends StatefulWidget {
+class HistoryAppointments extends StatelessWidget {
   HistoryAppointments({Key? key}) : super(key: key);
 
-  @override
-  State<HistoryAppointments> createState() => _HistoryAppointmentsState();
-}
-
-class _HistoryAppointmentsState extends State<HistoryAppointments> {
   var uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override

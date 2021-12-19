@@ -5,14 +5,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vaccinationapp/certificate_detail.dart';
 
-class Vaccinations extends StatefulWidget {
+class Vaccinations extends StatelessWidget {
   Vaccinations({Key? key}) : super(key: key);
 
-  @override
-  State<Vaccinations> createState() => _VaccinationsState();
-}
-
-class _VaccinationsState extends State<Vaccinations> {
   var uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override

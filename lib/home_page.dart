@@ -10,6 +10,7 @@ import 'package:vaccinationapp/history_appointment.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/drawer.dart';
 import 'package:vaccinationapp/vaccination_certificates.dart';
+import 'package:vaccinationapp/vaccinations_info.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
 
@@ -123,15 +124,13 @@ class HomePage extends StatelessWidget {
                                 ),
                                 SizedBox(width: 20.w),
                                 DiscoverCard(
-                                  onTap: data2["time"]
-                                          .toDate()
-                                          .isAfter(DateTime.now())
-                                      ? onNextAppointmentTapped
-                                      : () {},
+                                  onTap: onNextAppointmentTapped,
                                   title: "Next Appointment",
-                                  subtitle: data2["time"]
-                                          .toDate()
-                                          .isAfter(DateTime.now())
+                                  subtitle: data2["time"].toDate().isAfter(
+                                              DateTime.now()
+                                                  .subtract(const Duration(
+                                            days: 1,
+                                          )))
                                       ? "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}"
                                       : "You don't have any upcoming appointment",
                                   gradientStartColor: const Color(0xffFC67A7),
@@ -184,7 +183,7 @@ class HomePage extends StatelessWidget {
                       icon: const Icon(Icons.local_hospital,
                           color: Colors.white)),
                   DiscoverSmallCard(
-                      onTap: () {},
+                      onTap: onVSTapped,
                       title: "Vaccinations Info",
                       gradientStartColor: const Color(0xffFFD541),
                       gradientEndColor: const Color(0xffF0B31A),
@@ -212,12 +211,18 @@ class HomePage extends StatelessWidget {
     Get.to(() => HistoryAppointments(), transition: Transition.zoom);
   }
 
+  void onVSTapped() {
+    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    Get.to(() => Vaccinations_Info(), transition: Transition.zoom);
+  }
+
   void onLatestVaccinationTapped() {
     Get.to(() => const DetailPage(),
         transition: Transition.rightToLeftWithFade);
   }
 
-  void onNextAppointmentTapped() {}
-
-  void onSearchIconTapped() {}
+  void onNextAppointmentTapped() {
+    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
+    Get.to(() => HistoryAppointments(), transition: Transition.zoom);
+  }
 }
