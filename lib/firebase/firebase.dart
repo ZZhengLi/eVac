@@ -98,7 +98,7 @@ Future<void> userSetup(
   await FirebaseFirestore.instance
       .doc("Users/$uid")
       .collection("Appointment")
-      .add({"time": Timestamp.fromDate(DateTime(1900))});
+      .add({"time": Timestamp.fromDate(DateTime(2222))});
 }
 
 Future<void> updateData(

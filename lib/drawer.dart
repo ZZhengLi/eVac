@@ -124,7 +124,6 @@ class DrawerPage extends StatelessWidget {
                 onTap: () {
                   showDialog(
                     context: context,
-                    barrierDismissible: true, // user must tap button!
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: const Text('Confirm',

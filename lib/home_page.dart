@@ -31,9 +31,12 @@ class HomePage extends StatelessWidget {
     final appointment = FirebaseFirestore.instance
         .doc("Users/$uid")
         .collection("Appointment")
-        // .where("time",
-        //     isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
-        .orderBy("time", descending: true)
+        .where("time",
+            isGreaterThanOrEqualTo:
+                Timestamp.fromDate(DateTime.now().subtract(const Duration(
+              days: 1,
+            ))))
+        .orderBy("time")
         .limit(1)
         .snapshots();
     return Scaffold(
@@ -110,11 +113,7 @@ class HomePage extends StatelessWidget {
                               children: [
                                 DiscoverCard(
                                   tag: "latestVaccination",
-                                  onTap: data1["date"]
-                                          .toDate()
-                                          .isAfter(DateTime(2000))
-                                      ? onLatestVaccinationTapped
-                                      : () {},
+                                  onTap: onVCTapped,
                                   title: "Latest Vaccination",
                                   subtitle: data1["date"]
                                           .toDate()
@@ -124,13 +123,11 @@ class HomePage extends StatelessWidget {
                                 ),
                                 SizedBox(width: 20.w),
                                 DiscoverCard(
-                                  onTap: onNextAppointmentTapped,
+                                  onTap: onHATapped,
                                   title: "Next Appointment",
-                                  subtitle: data2["time"].toDate().isAfter(
-                                              DateTime.now()
-                                                  .subtract(const Duration(
-                                            days: 1,
-                                          )))
+                                  subtitle: data2["time"]
+                                          .toDate()
+                                          .isBefore(DateTime(2200))
                                       ? "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}"
                                       : "You don't have any upcoming appointment",
                                   gradientStartColor: const Color(0xffFC67A7),
@@ -214,15 +211,5 @@ class HomePage extends StatelessWidget {
   void onVSTapped() {
     // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => Vaccinations_Info(), transition: Transition.zoom);
-  }
-
-  void onLatestVaccinationTapped() {
-    Get.to(() => const DetailPage(),
-        transition: Transition.rightToLeftWithFade);
-  }
-
-  void onNextAppointmentTapped() {
-    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    Get.to(() => HistoryAppointments(), transition: Transition.zoom);
   }
 }
