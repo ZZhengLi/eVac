@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,6 +20,7 @@ class _ScannerState extends State<Scanner> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  late final String _uid;
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -123,11 +127,46 @@ class _ScannerState extends State<Scanner> {
       setState(() {
         result = scanData;
       });
+      controller.pauseCamera();
       if (await canLaunch(result!.code.toString())) {
         await launch(result!.code.toString(),
             forceSafariVC: true, forceWebView: true, enableJavaScript: true);
       } else {
-        throw 'Could not launch ${result!.code.toString()}';
+        await FirebaseFirestore.instance
+            .doc("QR/temp")
+            .get()
+            .then((value) async {
+          if (result!.code.toString() == value.data()!["code"]) {
+            EasyLoading.show(maskType: EasyLoadingMaskType.black);
+            _uid = FirebaseAuth.instance.currentUser!.uid;
+            await FirebaseFirestore.instance
+                .doc("Users/$_uid")
+                .collection("Vaccinations")
+                .add({
+              "name": value["name"],
+              "id": value["id"],
+              "adjuvant": value["adjuvant"],
+              "antigen": value["antigen"],
+              "brand_name": value["brand_name"],
+              "description": value["description"],
+              "manufacturer": value["manufacturer"],
+              "provider": value["provider"],
+              "type": value["type"],
+              "virulence": value["virulence"],
+              "expiry_date": value["expiry_date"],
+              "manufacture_date": value["manufacture_date"],
+              "date": value["date"],
+              "place_of_service": value["place_of_service"],
+              "dose_count": value["dose_count"]
+            });
+            await FirebaseFirestore.instance.doc("QR/temp").delete();
+            EasyLoading.showSuccess(
+                "New vaccine certificate received successfully!");
+            Navigator.pop(context);
+          } else {
+            EasyLoading.showError("QR Code may be expired, plase try again");
+          }
+        });
       }
     });
   }
