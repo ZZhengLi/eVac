@@ -6,20 +6,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/detail_page.dart';
-import 'package:vaccinationapp/history_appointment.dart';
+import 'package:vaccinationapp/next_appointment.dart';
 import 'package:vaccinationapp/qr_code.dart';
+import 'package:vaccinationapp/taken_vaccine.dart';
 import 'package:vaccinationapp/drawer.dart';
-import 'package:vaccinationapp/vaccination_certificates.dart';
-import 'package:vaccinationapp/vaccinations_info.dart';
+import 'package:vaccinationapp/latest_vaccination.dart';
+// import 'package:vaccinationapp/vaccinations_info.dart';
+import 'package:vaccinationapp/vaccine_info.dart';
 import 'package:vaccinationapp/widgets/discover_card.dart';
 import 'package:vaccinationapp/widgets/discover_small_card.dart';
+
+import 'package:vaccinationapp/fitness_app/my_diary/my_diary_screen.dart';
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
+import 'package:vaccinationapp/pdf.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
     Key? key,
   }) : super(key: key);
   var uid = FirebaseAuth.instance.currentUser!.uid;
-  var data1, data2;
+  var data1, data2, latest;
   @override
   Widget build(BuildContext context) {
     final vaccines = FirebaseFirestore.instance
@@ -40,15 +48,23 @@ class HomePage extends StatelessWidget {
         .limit(1)
         .snapshots();
     return Scaffold(
-      backgroundColor: const Color(0xff121421),
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: DesignCourseAppTheme.darkerText,
+          ),
           centerTitle: true,
-          title: const Text("Home"),
+          title: const Text("Home",
+              style: const TextStyle(
+                  color: DesignCourseAppTheme.darkerText,
+                  fontFamily: FitnessAppTheme.fontName,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22)),
           elevation: 0,
-          backgroundColor: const Color(0xff121421),
+          backgroundColor: const Color(0xffffffff),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.qr_code),
+              icon: const Icon(Icons.qr_code, color: Colors.black),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return QrCode();
@@ -107,18 +123,19 @@ class HomePage extends StatelessWidget {
                             }
 
                             data1 = snapshot1.data.docs[0];
+                            latest = data1["latest"];
                             data2 = snapshot2.data.docs[0];
 
                             return Row(
                               children: [
                                 DiscoverCard(
                                   tag: "latestVaccination",
-                                  onTap: onVCTapped,
+                                  onTap: () => onVTapped(data1),
                                   title: "Latest Vaccination",
-                                  subtitle: data1["date"]
+                                  subtitle: data1["date${data1["latest"]}"]
                                           .toDate()
                                           .isAfter(DateTime(2000))
-                                      ? "${data1["name"]}\n\n\n\n${data1["date"].toDate().year}-${data1["date"].toDate().month}-${data1["date"].toDate().day}"
+                                      ? "${data1["name$latest"]}\n\n\n\n${data1["date$latest"].toDate().year}-${data1["date$latest"].toDate().month}-${data1["date$latest"].toDate().day}"
                                       : "You haven't taken any vaccination",
                                 ),
                                 SizedBox(width: 20.w),
@@ -145,7 +162,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 28.w),
               child: Text(
-                "More",
+                "Others",
                 style: TextStyle(
                     color: const Color(0xff515979),
                     fontWeight: FontWeight.w500,
@@ -166,28 +183,28 @@ class HomePage extends StatelessWidget {
                 children: [
                   DiscoverSmallCard(
                     onTap: onVCTapped,
-                    title: "Vaccination Certificates",
+                    title: "Vaccine Certificates",
                     gradientStartColor: const Color(0xff13DEA0),
                     gradientEndColor: const Color(0xff06B782),
                     icon: SvgPicture.asset("assets/icons/vaccines.svg",
                         color: Colors.white, semanticsLabel: 'vaccines'),
                   ),
                   DiscoverSmallCard(
-                      onTap: () {},
-                      title: "Hospital Info",
+                      onTap: onVSTapped,
+                      title: "Details of Vaccines",
+                      gradientStartColor: const Color(0xffFFD541),
+                      gradientEndColor: const Color(0xffF0B31A),
+                      icon: const Icon(Icons.info, color: Colors.white)),
+                  DiscoverSmallCard(
+                      onTap: onCtapped,
+                      title: "Don't know",
                       gradientStartColor: const Color(0xffFC67A7),
                       gradientEndColor: const Color(0xffF6815B),
                       icon: const Icon(Icons.local_hospital,
                           color: Colors.white)),
                   DiscoverSmallCard(
-                      onTap: onVSTapped,
-                      title: "Vaccinations Info",
-                      gradientStartColor: const Color(0xffFFD541),
-                      gradientEndColor: const Color(0xffF0B31A),
-                      icon: const Icon(Icons.info, color: Colors.white)),
-                  DiscoverSmallCard(
                       onTap: onHATapped,
-                      title: "History Appointments",
+                      title: "Don't know",
                       icon: const Icon(Icons.history, color: Colors.white)),
                 ],
               ),
@@ -200,16 +217,28 @@ class HomePage extends StatelessWidget {
 
   void onVCTapped() {
     // EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    Get.to(() => Vaccinations(), transition: Transition.zoom);
+    Get.to(() => TakenVaccine(), transition: Transition.zoom);
   }
 
   void onHATapped() {
     // EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    Get.to(() => HistoryAppointments(), transition: Transition.zoom);
+    Get.to(() => NextAppointment(), transition: Transition.zoom);
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => const MyDiaryScreen()),
+    // );
   }
 
   void onVSTapped() {
     // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => Vaccinations_Info(), transition: Transition.zoom);
+  }
+
+  void onVTapped(QueryDocumentSnapshot<Object?> data) {
+    Get.to(() => LatestVaccination(data: data), transition: Transition.zoom);
+  }
+
+  void onCtapped() {
+    Get.to(() => PDF(), transition: Transition.zoom);
   }
 }

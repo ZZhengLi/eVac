@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
 
@@ -86,7 +89,7 @@ class _InfoPageState extends State<InfoPage> {
               FocusScope.of(context).requestFocus(FocusNode());
             },
             child: Stack(children: [
-              Container(color: const Color(0xff121421)),
+              Container(color: const Color(0xffffffff)),
               Container(
                 height: 0.3 * height,
                 width: width,
@@ -156,7 +159,7 @@ class _InfoPageState extends State<InfoPage> {
                           child: const Text(
                             "Personal Info",
                             style: TextStyle(
-                                color: Color(0xff515979),
+                                color: Colors.blueGrey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500),
                           )),
@@ -196,9 +199,10 @@ class _InfoPageState extends State<InfoPage> {
                                           child: const Text(
                                             "Gender",
                                             style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                            ),
+                                                fontSize: 17,
+                                                color: DesignCourseAppTheme
+                                                    .nearlyBlue,
+                                                fontWeight: FontWeight.bold),
                                           )),
                                       Container(
                                         alignment: Alignment.bottomLeft,
@@ -206,12 +210,11 @@ class _InfoPageState extends State<InfoPage> {
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<dynamic>(
                                             dropdownColor:
-                                                const Color(0xff263950),
+                                                const Color(0xffffffff),
                                             hint: const Text('Gender',
                                                 style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  color: Colors.white,
+                                                  fontSize: 17,
+                                                  color: Color(0x8A000000),
                                                 )),
                                             value: _gender,
                                             items: <String>[
@@ -224,10 +227,8 @@ class _InfoPageState extends State<InfoPage> {
                                                 child: Text(
                                                   value,
                                                   style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 16,
-                                                      color: Colors.white),
+                                                      fontSize: 17,
+                                                      color: Color(0x8A000000)),
                                                 ),
                                               );
                                             }).toList(),
@@ -252,14 +253,15 @@ class _InfoPageState extends State<InfoPage> {
                                           child: const Text(
                                             "DOB",
                                             style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                            ),
+                                                fontSize: 17,
+                                                color: DesignCourseAppTheme
+                                                    .nearlyBlue,
+                                                fontWeight: FontWeight.bold),
                                           )),
                                       Expanded(
                                         child: Material(
                                           color: editState
-                                              ? const Color(0xff263950)
+                                              ? const Color(0xffffffff)
                                               : Colors.transparent,
                                           child: InkWell(
                                               onTap: editState
@@ -285,9 +287,8 @@ class _InfoPageState extends State<InfoPage> {
                                               child: Text(
                                                 "${_dob.year.toString()}-${_dob.month.toString()}-${_dob.day.toString()}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  color: Colors.white,
+                                                  fontSize: 17,
+                                                  color: Color(0x8A000000),
                                                 ),
                                               )),
                                         ),
@@ -303,9 +304,10 @@ class _InfoPageState extends State<InfoPage> {
                                           child: const Text(
                                             "Address",
                                             style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                            ),
+                                                fontSize: 17,
+                                                color: DesignCourseAppTheme
+                                                    .nearlyBlue,
+                                                fontWeight: FontWeight.bold),
                                           )),
                                       Expanded(
                                         child: SizedBox(
@@ -316,9 +318,8 @@ class _InfoPageState extends State<InfoPage> {
                                                 TextInputType.streetAddress,
                                             controller: _address,
                                             style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: Colors.white,
+                                              fontSize: 17,
+                                              color: Color(0x8A000000),
                                             ),
                                             decoration: InputDecoration(
                                               enabled: editState,
@@ -416,9 +417,9 @@ class _InfoPageState extends State<InfoPage> {
             child: Text(
               title,
               style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
+                  fontSize: 17,
+                  color: DesignCourseAppTheme.nearlyBlue,
+                  fontWeight: FontWeight.bold),
             )),
         Expanded(
           child: SizedBox(
@@ -427,9 +428,8 @@ class _InfoPageState extends State<InfoPage> {
               keyboardType: keyboardType,
               controller: controller,
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.white,
+                fontSize: 17,
+                color: Color(0x8A000000),
               ),
               decoration: InputDecoration(
                 enabled: edit,

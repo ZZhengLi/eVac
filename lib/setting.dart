@@ -1,56 +1,104 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:vaccinationapp/reset_password.dart';
+import 'package:vaccinationapp/user/sign_in_page.dart';
+
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class Setting extends StatelessWidget {
-  Setting({Key? key}) : super(key: key);
-  var uid = FirebaseAuth.instance.currentUser!.uid;
+  const Setting({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     EasyLoading.dismiss();
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        centerTitle: true,
+        title: const Text(
+          "Settings",
+          style: const TextStyle(
+            color: Colors.black,
+            fontFamily: FitnessAppTheme.fontName,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.white,
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          const SizedBox(height: 50),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: ElevatedButton(
+          //         child: const Text("Reset Password"),
+          //         onPressed: () {
+          //           EasyLoading.show(maskType: EasyLoadingMaskType.black);
+          //           Navigator.push(context,
+          //               MaterialPageRoute(builder: (context) {
+          //             return ResetPassword();
+          //           }));
+          //           EasyLoading.dismiss();
+          //         },
+          //       ),
+          //     ),
+          //   ],
+          // ),
 
-    return Container(
-      child: ElevatedButton(
-        onPressed: () {
-          // var list = ["abc","123"];
-          // FirebaseFirestore.instance
-          //     .doc("Users/$uid")
-          //     .update({"vaccinations": FieldValue.arrayUnion(list)});
-        },
-        child: Text("D"),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Positioned(
+              child: SizedBox(
+                width: 380,
+                height: 50,
+                child: ElevatedButton(
+                  style: (ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          DesignCourseAppTheme.nearlyBlue),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      )))),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.left,
+                    children: const [
+                      Text(
+                        "  Reset Password                                       ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          letterSpacing: 0.0,
+                          color: DesignCourseAppTheme.nearlyWhite,
+                        ),
+                      ),
+                      Icon(
+                        Icons.navigate_next,
+                        color: DesignCourseAppTheme.nearlyWhite,
+                      ),
+                    ],
+                  ),
+                  onPressed: () {
+                    EasyLoading.show(maskType: EasyLoadingMaskType.black);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ResetPassword();
+                    }));
+                    EasyLoading.dismiss();
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
-}
-
-Future<void> upload() async {
-  // Create a new PDF document.
-  final PdfDocument document = PdfDocument();
-// Add a PDF page and draw text.
-  document.pages.add().graphics.drawString(
-      'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 12),
-      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      bounds: const Rect.fromLTWH(0, 0, 150, 20));
-// Save the document.
-  List<int> bytes = document.save();
-
-  document.dispose();
-  openFile(bytes, "Output.pdf");
-}
-
-Future<void> openFile(List<int> bytes, String fileName) async {
-  final path = (await getExternalStorageDirectory())!.path;
-  final file = File("$path/$fileName");
-  await file.writeAsBytes(bytes, flush: true);
-  // OpenFile.open("$path/$fileName");
-  final ref = FirebaseStorage.instance.ref().child("pdf").child("pdf");
-  await ref.putFile(file);
 }

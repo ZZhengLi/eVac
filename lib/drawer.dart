@@ -7,8 +7,13 @@ import 'package:vaccinationapp/profile.dart';
 import 'package:vaccinationapp/setting.dart';
 import 'package:vaccinationapp/user/sign_in_page.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class DrawerPage extends StatelessWidget {
   const DrawerPage({Key? key}) : super(key: key);
+
+  get color => null;
 
   @override
   Widget build(BuildContext context) {
@@ -44,38 +49,49 @@ class DrawerPage extends StatelessWidget {
                           accountName: Text(
                             snapshot.data['displayName'],
                             style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: FitnessAppTheme.grey),
                           ),
-                          accountEmail: Text(snapshot.data['email']),
+                          accountEmail: Text(
+                            snapshot.data['email'],
+                            style: const TextStyle(
+                                fontSize: 14, color: FitnessAppTheme.grey),
+                          ),
                           currentAccountPicture: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage:
                                   (NetworkImage(snapshot.data['photoUrl']))),
                           decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      snapshot.data['backgroundImg']),
-                                  fit: BoxFit.cover)),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    snapshot.data['backgroundImg']),
+                                fit: BoxFit.cover),
+                          ),
                         );
                       }))
             ],
           ),
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xff263950),
+              color: const Color(0xffffffff),
               border: Border.all(
-                color: const Color(0xff263950),
+                color: const Color(0xffffffff),
               ),
             ),
             child: Column(
               children: [
                 ListTile(
                   leading: const CircleAvatar(
-                    backgroundColor: Color(0xff263950),
-                    child: Icon(Icons.person),
+                    backgroundColor: Color(0xffffffff),
+                    child: Icon(Icons.person,
+                        color: DesignCourseAppTheme.nearlyBlue),
                   ),
                   title: const Text("Profile",
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(
+                          color: FitnessAppTheme.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18)),
                   onTap: () {
                     EasyLoading.show(maskType: EasyLoadingMaskType.black);
                     Navigator.pop(context);
@@ -87,18 +103,24 @@ class DrawerPage extends StatelessWidget {
                 ),
                 ListTile(
                     leading: const CircleAvatar(
-                      backgroundColor: Color(0xff263950),
-                      child: Icon(Icons.settings),
+                      backgroundColor: Color(0xffffffff),
+                      child: Icon(
+                        Icons.settings,
+                        color: DesignCourseAppTheme.nearlyBlue,
+                      ),
                     ),
-                    title: const Text("Setting",
-                        style: TextStyle(color: Colors.white)),
+                    title: const Text("Settings",
+                        style: TextStyle(
+                            color: FitnessAppTheme.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18)),
                     onTap: () {
                       EasyLoading.show(maskType: EasyLoadingMaskType.black);
                       Navigator.pop(context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return Setting();
+                          return const Setting();
                         }),
                       );
                     })
@@ -108,19 +130,25 @@ class DrawerPage extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xff263950),
-                border: Border.all(
-                  color: const Color(0xff263950),
+                color: const Color(0xffffffff),
+                border: Border(
+                  bottom: BorderSide(width: 5, color: Colors.black),
                 ),
               ),
               alignment: Alignment.bottomLeft,
               child: ListTile(
                 leading: const CircleAvatar(
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.logout),
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.logout,
+                    color: Colors.red,
+                  ),
                 ),
                 title: const Text("Sign Out",
-                    style: TextStyle(color: Colors.white)),
+                    style: TextStyle(
+                        color: FitnessAppTheme.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
                 onTap: () {
                   showDialog(
                     context: context,

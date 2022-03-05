@@ -7,6 +7,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:vaccinationapp/home_page.dart';
 import 'package:vaccinationapp/user/sign_up_page.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class SignInPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   SignInPage({Key? key}) : super(key: key);
@@ -23,42 +26,39 @@ class SignInPage extends StatelessWidget {
         },
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: const Color(0xff121421),
+          backgroundColor: const Color(0xffffffff),
           body: Column(children: <Widget>[
             Container(
-                padding: EdgeInsets.fromLTRB(0.05 * width, 0.1 * height, 0, 0),
+                padding: EdgeInsets.fromLTRB(0.16 * width, 0.1 * height, 0, 0),
                 decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/pics/sibg0.jpg"), //Image
-                      fit: BoxFit.cover,
-                    ),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30))),
                 child: Row(children: const [
                   Text(
-                    "Welcome,\nSign In Now.", //Welcome text
+                    " Welcome!\nSign In Now", //Welcome text
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 50,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 50,
+                      color: DesignCourseAppTheme.nearlyBlue,
+                      fontWeight: FontWeight.w500,
+                    ),
                   )
                 ])),
             Row(
               children: [
                 Padding(
-                    padding: EdgeInsets.fromLTRB(0.1 * width, 0, 0, 0),
-                    child: const Text("If you are new /  ",
+                    padding: EdgeInsets.fromLTRB(0.15 * width, 0, 0, 0),
+                    child: const Text("\nIf you are new /  ",
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey,
                         ))),
                 Text.rich(TextSpan(
-                    text: "Sign up",
+                    text: "\nSign up",
                     style: const TextStyle(
                         fontSize: 15,
-                        color: Colors.white,
+                        color: DesignCourseAppTheme.nearlyBlue,
                         decoration: TextDecoration.underline),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
@@ -82,14 +82,15 @@ class SignInPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      style: const TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                           hintText: "Email",
-                          fillColor: Colors.white,
+                          fillColor: Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          )),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderRadius: BorderRadius.circular(10))),
                       validator: EmailValidator(
                           errorText: "Enter a valid email address"),
                       onSaved: (email) => _email = email!,
@@ -99,15 +100,16 @@ class SignInPage extends StatelessWidget {
                     ),
                     //input password box
                     TextFormField(
-                      style: const TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Password",
-                          fillColor: Colors.white,
+                          fillColor: Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          )),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderRadius: BorderRadius.circular(10))),
                       onSaved: (password) => _password = password!,
                       onFieldSubmitted: (v) async {
                         await signInMethod(context);
@@ -120,15 +122,15 @@ class SignInPage extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                    padding: EdgeInsets.fromLTRB(0.2 * width, 0, 0, 0),
-                    child: const Text("Forgot your password? /  ",
+                    padding: EdgeInsets.fromLTRB(0.15 * width, 0, 0, 0),
+                    child: const Text("\n Forgot your password? /  ",
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
                         ))),
                 //Reset button
                 Text.rich(TextSpan(
-                    text: "Rest",
+                    text: "\nReset",
                     style: const TextStyle(fontSize: 13, color: Colors.red),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
@@ -140,19 +142,32 @@ class SignInPage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 0.03 * height,
+              height: 0.09 * height,
             ),
             SizedBox(
-              width: 0.2 * width,
+              width: 0.7 * width,
+
+              height: 45,
               //Sign in button
               child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)))),
+                  style: (ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          DesignCourseAppTheme.nearlyBlue),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      )))),
                   onPressed: () async {
                     await signInMethod(context);
                   },
-                  child: const Text("Sign In")),
+                  child: const Text("Sign In",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        letterSpacing: 0.0,
+                        color: DesignCourseAppTheme.nearlyWhite,
+                      ))),
             ),
           ]),
         ));

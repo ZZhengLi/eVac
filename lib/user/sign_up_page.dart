@@ -5,6 +5,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'sign_in_page.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class SignUpPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
@@ -31,12 +34,19 @@ class SignUpPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    "Sign Up",
-                    style: TextStyle(fontSize: 50),
+                    "eVac",
+                    style: TextStyle(
+                        fontSize: 50,
+                        color: DesignCourseAppTheme.nearlyBlue,
+                        fontWeight: FontWeight.w500),
                   ),
                   Row(
                     children: [
-                      const Text("Already have an account?"),
+                      const Text("Already have an account?",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          )),
                       TextButton(
                         onPressed: () => Navigator.pushReplacement(
                             context,
@@ -45,7 +55,9 @@ class SignUpPage extends StatelessWidget {
                             )),
                         child: const Text(
                           "Sign In!",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 15,
+                              color: DesignCourseAppTheme.nearlyBlue),
                         ),
                       ),
                     ],
@@ -56,59 +68,113 @@ class SignUpPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const TextFieldName(text: "Full Name"),
+                        // const TextFieldName(text: "Full Name"),
                         TextFormField(
-                          decoration:
-                              const InputDecoration(hintText: "Your Name Here"),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                          decoration: const InputDecoration(
+                              hintText: "Full Name",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
                           validator: RequiredValidator(
                               errorText: "Full Name is required"),
                           onSaved: (fullName) => _fullName = fullName!,
                         ),
                         SizedBox(height: 0.025 * height),
-                        const TextFieldName(text: "Email"),
+
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                           decoration: const InputDecoration(
-                              hintText: "yourEmail@email.com"),
+                              hintText: "Email Address",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
                           validator: EmailValidator(
                               errorText: "Enter a valid email address"),
                           onSaved: (email) => _email = email!,
                         ),
                         SizedBox(height: 0.025 * height),
-                        const TextFieldName(text: "Phone"),
+
                         TextFormField(
                           keyboardType: TextInputType.phone,
-                          decoration:
-                              const InputDecoration(hintText: "+123487697"),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                          decoration: const InputDecoration(
+                              hintText: "Phone Number",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
                           onSaved: (phoneNumber) => _phoneNumber = phoneNumber!,
                         ),
                         SizedBox(height: 0.025 * height),
-                        const TextFieldName(text: "Password"),
+
                         TextFormField(
                           obscureText: true,
-                          decoration:
-                              const InputDecoration(hintText: "********"),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                          decoration: const InputDecoration(
+                              hintText: "Password",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
                           validator: passwordValidator,
                           onSaved: (password) => _password = password!,
                           onChanged: (pass) => _password = pass,
                         ),
                         SizedBox(height: 0.025 * height),
-                        const TextFieldName(text: "Confirm Password"),
+
                         TextFormField(
                           obscureText: true,
-                          decoration:
-                              const InputDecoration(hintText: "********"),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                          decoration: const InputDecoration(
+                              hintText: "Confirm Password",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
                           validator: (pass) => MatchValidator(
-                                  errorText: "Password do not  match")
+                                  errorText: "Password does not  match")
                               .validateMatch(pass!, _password),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 0.05 * width),
+                  SizedBox(height: 45),
                   SizedBox(
                     width: double.infinity,
+                    height: 45,
                     child: ElevatedButton(
+                      style: (ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              DesignCourseAppTheme.nearlyBlue),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          )))),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
@@ -134,7 +200,13 @@ class SignUpPage extends StatelessWidget {
                           }
                         }
                       },
-                      child: const Text("Sign Up"),
+                      child: const Text("Sign Up",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            letterSpacing: 0.0,
+                            color: DesignCourseAppTheme.nearlyWhite,
+                          )),
                     ),
                   ),
                 ],
@@ -161,8 +233,7 @@ class TextFieldName extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 5),
       child: Text(
         text,
-        style:
-            const TextStyle(fontWeight: FontWeight.w600, color: Colors.black54),
+        // style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.red),
       ),
     );
   }

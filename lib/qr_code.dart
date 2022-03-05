@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vaccinationapp/scanner.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class QrCode extends StatelessWidget {
   QrCode({Key? key}) : super(key: key);
 
@@ -15,12 +18,14 @@ class QrCode extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         centerTitle: true,
-        title: const Text("My QR Code"),
         elevation: 0,
-        backgroundColor: const Color(0xff121421),
+        backgroundColor: const Color(0xffffffff),
       ),
-      backgroundColor: const Color(0xff121421),
+      backgroundColor: const Color(0xffffffff),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -37,8 +42,10 @@ class QrCode extends StatelessWidget {
             Positioned(
                 bottom: 0.2 * height,
                 child: const Text(
-                  "Scan a QR code for more information ",
-                  style: TextStyle(color: Colors.white),
+                  "      Scanners will know your medical information,\nappointment details when they scan your QR code.",
+                  style: TextStyle(
+                    color: FitnessAppTheme.grey,
+                  ),
                 )),
             Positioned(
               bottom: 0.05 * height,
@@ -47,18 +54,27 @@ class QrCode extends StatelessWidget {
                 height: 0.075 * height,
                 child: ElevatedButton(
                   style: (ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.white))),
+                      backgroundColor: MaterialStateProperty.all(
+                          DesignCourseAppTheme.nearlyBlue),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      )))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(
                         Icons.qr_code_scanner_sharp,
-                        color: Color(0xff121421),
+                        color: DesignCourseAppTheme.nearlyWhite,
                       ),
                       Text(
-                        "Scan QR Code",
-                        style: TextStyle(color: Color(0xff121421)),
+                        " Scan QR Code",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          letterSpacing: 0.0,
+                          color: DesignCourseAppTheme.nearlyWhite,
+                        ),
                       ),
                     ],
                   ),

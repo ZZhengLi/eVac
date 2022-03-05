@@ -5,6 +5,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/info_page.dart';
 
+import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
+import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -30,7 +33,7 @@ class ProfilePage extends StatelessWidget {
           }
           EasyLoading.dismiss();
           return Stack(children: [
-            Container(color: const Color(0xff121421)),
+            Container(color: const Color(0xffffffff)),
             Container(
                 height: 0.3 * height,
                 width: width,
@@ -126,7 +129,7 @@ class ProfilePage extends StatelessWidget {
                             0.1 * width, 0.03 * height, 0, 0),
                         child: const Text("Personal Info",
                             style: TextStyle(
-                                color: Color(0xff515979),
+                                color: Colors.blueGrey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500))),
                   ],
@@ -139,7 +142,10 @@ class ProfilePage extends StatelessWidget {
                       infoFormat(
                           width, height, "Name", snapshot.data["displayName"]),
                       infoFormat(width, height, "ID Card", snapshot.data["id"]),
-                      infoFormat(width, height, "Phone", snapshot.data["phone"])
+                      infoFormat(
+                          width, height, "Phone", snapshot.data["phone"]),
+                      infoFormat(width, height, "Nationality",
+                          snapshot.data["nationality"])
                     ],
                   ),
                 ),
@@ -149,17 +155,17 @@ class ProfilePage extends StatelessWidget {
                   child: Row(
                     children: [
                       infoBox(width, "Blood Group", snapshot.data["bloodGroup"],
-                          Icons.bloodtype, Colors.red[300]),
+                          Icons.bloodtype, const Color(0xff62B4FF)),
                       SizedBox(
                         width: 0.045 * width,
                       ),
                       infoBox(width, "Weight(kg)", snapshot.data["weight"],
-                          Icons.accessibility_new, const Color(0xff13DEA0)),
+                          Icons.accessibility_new, const Color(0xff62B4FF)),
                       SizedBox(
                         width: 0.045 * width,
                       ),
                       infoBox(width, "Height (cm)", snapshot.data["height"],
-                          Icons.accessibility, const Color(0xffF0B31A))
+                          Icons.accessibility, const Color(0xff62B4FF))
                     ],
                   ),
                 ),
@@ -173,15 +179,17 @@ class ProfilePage extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-            width: 0.2 * width,
+            width: 0.25 * width,
             child: Text(title,
-                style: const TextStyle(fontSize: 16, color: Colors.white))),
+                style: const TextStyle(
+                    fontSize: 17,
+                    color: DesignCourseAppTheme.nearlyBlue,
+                    fontWeight: FontWeight.bold))),
         Padding(
           padding: EdgeInsets.all(0.02 * height),
           child: Text(
             data,
-            style: const TextStyle(
-                fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 17, color: Color(0x8A000000)),
           ),
         ),
       ],

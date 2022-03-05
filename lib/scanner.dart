@@ -21,6 +21,7 @@ class _ScannerState extends State<Scanner> {
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   late final String _uid;
+  late bool exist;
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -107,7 +108,7 @@ class _ScannerState extends State<Scanner> {
           padding: EdgeInsets.fromLTRB(0.05 * width, 0.04 * height, 0, 0),
           child: IconButton(
             icon: const Icon(
-              Icons.arrow_back_ios,
+              Icons.close,
               color: Colors.white,
             ),
             onPressed: () {
@@ -142,24 +143,64 @@ class _ScannerState extends State<Scanner> {
             await FirebaseFirestore.instance
                 .doc("Users/$_uid")
                 .collection("Vaccinations")
-                .add({
-              "name": value["name"],
-              "id": value["id"],
-              "adjuvant": value["adjuvant"],
-              "antigen": value["antigen"],
-              "brand_name": value["brand_name"],
-              "description": value["description"],
-              "manufacturer": value["manufacturer"],
-              "provider": value["provider"],
-              "type": value["type"],
-              "virulence": value["virulence"],
-              "expiry_date": value["expiry_date"],
-              "manufacture_date": value["manufacture_date"],
-              "date": value["date"],
-              "place_of_service": value["place_of_service"],
-              "dose_count": value["dose_count"]
+                .doc(value["name"])
+                .get()
+                .then((doc) {
+              exist = doc.exists;
             });
+            exist
+                ? await FirebaseFirestore.instance
+                    .doc("Users/$_uid")
+                    .collection("Vaccinations")
+                    .doc(value["name"])
+                    .update({
+                    "name${value["dose_count"]}": value["name"],
+                    "id${value["dose_count"]}": value["id"],
+                    "adjuvant${value["dose_count"]}": value["adjuvant"],
+                    "antigen${value["dose_count"]}": value["antigen"],
+                    "brand_name${value["dose_count"]}": value["brand_name"],
+                    "description${value["dose_count"]}": value["description"],
+                    "manufacturer${value["dose_count"]}": value["manufacturer"],
+                    "provider${value["dose_count"]}": value["provider"],
+                    "type${value["dose_count"]}": value["type"],
+                    "virulence${value["dose_count"]}": value["virulence"],
+                    "expiry_date${value["dose_count"]}": value["expiry_date"],
+                    "manufacture_date${value["dose_count"]}":
+                        value["manufacture_date"],
+                    "date${value["dose_count"]}": value["date"],
+                    "place_of_service${value["dose_count"]}":
+                        value["place_of_service"],
+                    "dose_count${value["dose_count"]}": value["dose_count"],
+                    "latest": value["dose_count"],
+                    "date": value["date"],
+                  })
+                : await FirebaseFirestore.instance
+                    .doc("Users/$_uid")
+                    .collection("Vaccinations")
+                    .doc(value["name"])
+                    .set({
+                    "name${value["dose_count"]}": value["name"],
+                    "id${value["dose_count"]}": value["id"],
+                    "adjuvant${value["dose_count"]}": value["adjuvant"],
+                    "antigen${value["dose_count"]}": value["antigen"],
+                    "brand_name${value["dose_count"]}": value["brand_name"],
+                    "description${value["dose_count"]}": value["description"],
+                    "manufacturer${value["dose_count"]}": value["manufacturer"],
+                    "provider${value["dose_count"]}": value["provider"],
+                    "type${value["dose_count"]}": value["type"],
+                    "virulence${value["dose_count"]}": value["virulence"],
+                    "expiry_date${value["dose_count"]}": value["expiry_date"],
+                    "manufacture_date${value["dose_count"]}":
+                        value["manufacture_date"],
+                    "date${value["dose_count"]}": value["date"],
+                    "place_of_service${value["dose_count"]}":
+                        value["place_of_service"],
+                    "dose_count${value["dose_count"]}": value["dose_count"],
+                    "latest": value["dose_count"],
+                    "date": value["date"],
+                  });
             await FirebaseFirestore.instance.doc("QR/temp").delete();
+
             EasyLoading.showSuccess(
                 "New vaccine certificate received successfully!");
             Navigator.pop(context);
