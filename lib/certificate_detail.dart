@@ -175,7 +175,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                         padding: const EdgeInsets.only(
                                             top: 4, bottom: 14, left: 47),
                                         child: Text(
-                                          "${snapshot.data["dob"].toDate().day.toString()}/${snapshot.data["dob"].toDate().month.toString()}/${snapshot.data["dob"].toDate().year.toString()}",
+                                          "${snapshot.data["dob"].toDate().day.toString().padLeft(2, '0')}/${snapshot.data["dob"].toDate().month.toString().padLeft(2, '0')}/${snapshot.data["dob"].toDate().year.toString()}",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily:
@@ -377,7 +377,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 83),
                           child: Text(
-                            "${data["date$i"].toDate().day}/${data["date$i"].toDate().month}/${data["date$i"].toDate().year}",
+                            "${data["date$i"].toDate().day.toString().padLeft(2, '0')}/${data["date$i"].toDate().month.toString().padLeft(2, '0')}/${data["date$i"].toDate().year}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,

@@ -285,7 +285,7 @@ class _InfoPageState extends State<InfoPage> {
                                                     }
                                                   : null,
                                               child: Text(
-                                                "${_dob.year.toString()}-${_dob.month.toString()}-${_dob.day.toString()}",
+                                                "${_dob.year.toString()}-${_dob.month.toString().padLeft(2, '0')}-${_dob.day.toString().padLeft(2, '0')}",
                                                 style: const TextStyle(
                                                   fontSize: 17,
                                                   color: Color(0x8A000000),

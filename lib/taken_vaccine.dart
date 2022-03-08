@@ -244,7 +244,7 @@ class TakenVaccineState extends State<TakenVaccine> {
                                                                     left: 4,
                                                                     bottom: 3),
                                                             child: Text(
-                                                              "${data["date"].toDate().day}/${data["date"].toDate().month}/${data["date"].toDate().year}",
+                                                              "${data["date"].toDate().day.toString().padLeft(2, '0')}/${data["date"].toDate().month.toString().padLeft(2, '0')}/${data["date"].toDate().year}",
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,

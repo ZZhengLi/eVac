@@ -127,7 +127,7 @@ class HomePage extends StatelessWidget {
                                   onTap: () => onVTapped(data1),
                                   title: "Latest Vaccination",
                                   subtitle: data1["latest"] != "0"
-                                      ? "${data1["vaccine_name$latest"]}\n\n\n\n${data1["date$latest"].toDate().year}-${data1["date$latest"].toDate().month}-${data1["date$latest"].toDate().day}"
+                                      ? "${data1["vaccine_name$latest"]}\n\n\n\n${data1["date$latest"].toDate().year.toString()}-${data1["date$latest"].toDate().month.toString().padLeft(2, '0')}-${data1["date$latest"].toDate().day.toString().padLeft(2, '0')}"
                                       : "You haven't taken any vaccination",
                                 ),
                                 SizedBox(width: 20.w),
@@ -137,7 +137,7 @@ class HomePage extends StatelessWidget {
                                   subtitle: data2["time"]
                                           .toDate()
                                           .isBefore(DateTime(2200))
-                                      ? "Your next appointment is on\n\n\n\n${data2["time"].toDate().year}-${data2["time"].toDate().month}-${data2["time"].toDate().day}"
+                                      ? "Your next appointment is on\n\n\n\n${data2["time"].toDate().year.toString()}-${data2["time"].toDate().month.toString().padLeft(2, '0')}-${data2["time"].toDate().day.toString().padLeft(2, '0')}"
                                       : "You don't have any upcoming appointment",
                                   gradientStartColor: const Color(0xffFC67A7),
                                   gradientEndColor: const Color(0xffF6815B),

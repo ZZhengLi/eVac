@@ -498,7 +498,7 @@ class LatestVaccination extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "${date.day}/${date.month}/${date.year}",
+                                                "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString().padLeft(2, '0')}",
                                                 style: const TextStyle(
                                                   fontFamily:
                                                       FitnessAppTheme.fontName,
