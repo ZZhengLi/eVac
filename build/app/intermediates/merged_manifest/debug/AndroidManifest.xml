@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="30" />
+        android:targetSdkVersion="31" />
     <!--
          Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
@@ -83,6 +83,7 @@
         <activity
             android:name="com.seniorproject.vaccinationapp.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -178,6 +179,14 @@
             android:name="io.flutter.plugins.urllauncher.WebViewActivity"
             android:exported="false"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <uses-library
+            android:name="androidx.window.extensions"
+            android:required="false" />
+        <uses-library
+            android:name="androidx.window.sidecar"
+            android:required="false" />
+
         <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
             android:excludeFromRecents="true"

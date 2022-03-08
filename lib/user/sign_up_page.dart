@@ -13,7 +13,7 @@ class SignUpPage extends StatelessWidget {
 
   SignUpPage({Key? key}) : super(key: key);
 
-  late String _fullName, _email, _password, _phoneNumber;
+  late String _fullName, _email, _password, _phoneNumber, _id;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +84,23 @@ class SignUpPage extends StatelessWidget {
                           validator: RequiredValidator(
                               errorText: "Full Name is required"),
                           onSaved: (fullName) => _fullName = fullName!,
+                        ),
+                        SizedBox(height: 0.025 * height),
+                        TextFormField(
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
+                          decoration: const InputDecoration(
+                              hintText: "ID Card(Thai)/Passport(Non-Thai)",
+                              fillColor: Color(0xfff2f3f8),
+                              filled: true,
+                              border: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xfff2f3f8)),
+                              )),
+                          validator: RequiredValidator(
+                              errorText: "ID Card/Passport is required"),
+                          onSaved: (id) => _id = id!,
                         ),
                         SizedBox(height: 0.025 * height),
 
@@ -189,7 +206,8 @@ class SignUpPage extends StatelessWidget {
                                 uid: _uid,
                                 displayname: _fullName,
                                 email: _email,
-                                phone: _phoneNumber);
+                                phone: _phoneNumber,
+                                id: _id);
                             EasyLoading.showSuccess("Sign Up Successfully!");
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {

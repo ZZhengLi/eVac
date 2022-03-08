@@ -68,13 +68,14 @@ Future<void> userSetup(
     {required String uid,
     String displayname = "",
     required String email,
-    String phone = ""}) async {
+    String phone = "",
+    required String id}) async {
   await FirebaseFirestore.instance.doc("Users/$uid").set({
     "uid": uid,
     "displayName": displayname,
     'email': email,
     "phone": phone,
-    "id": "",
+    "id": id,
     "height": "",
     "weight": "",
     "bloodGroup": "",
@@ -85,20 +86,22 @@ Future<void> userSetup(
     "photoUrl":
         "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fperson-1767893-1502146.png?alt=media&token=6d7af57d-e1f2-4a82-8ad7-c7ffcda58def",
     "backgroundImg":
-        "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2Fbgp.jpg?alt=media&token=d01db687-8784-4d82-a64b-14abd021e602"
+        "https://firebasestorage.googleapis.com/v0/b/seniorproject2021-2.appspot.com/o/userImages%2FMicrosoftTeams-image1.png?alt=media&token=b90060a6-7c3a-49f3-8522-3d109497b9e1"
   }, SetOptions(merge: true));
   await FirebaseFirestore.instance
       .doc("Users/$uid")
       .collection("Vaccinations")
-      .add({
-    "date": Timestamp.fromDate(DateTime(1900)),
-    "id": "default",
-    "name": "default"
+      .doc("default")
+      .set({
+    "vaccine_name1": "default",
+    "latest": "0",
+    "date": Timestamp.fromDate(DateTime(2222))
   });
   await FirebaseFirestore.instance
       .doc("Users/$uid")
       .collection("Appointment")
-      .add({"time": Timestamp.fromDate(DateTime(2222))});
+      .doc("default")
+      .set({"time": Timestamp.fromDate(DateTime(2222))});
 }
 
 Future<void> updateData(
@@ -112,10 +115,12 @@ Future<void> updateData(
 Future<String> pickSaveImage(String img) async {
   var user = FirebaseAuth.instance.currentUser;
   XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  EasyLoading.show(maskType: EasyLoadingMaskType.black);
   final _image = File(image!.path);
-  final ref =
-      FirebaseStorage.instance.ref().child("userImages").child(user!.uid + img);
+  final ref = FirebaseStorage.instance
+      .ref()
+      .child("userImages")
+      .child(user!.uid)
+      .child(img);
   await ref.putFile(_image);
   var url = await ref.getDownloadURL();
   return url;

@@ -183,12 +183,12 @@ class _InfoPageState extends State<InfoPage> {
                                   infos(
                                       title: "Name",
                                       controller: _name,
-                                      edit: editState,
+                                      edit: false,
                                       keyboardType: TextInputType.name),
                                   infos(
-                                      title: "ID Card",
+                                      title: "ID Card/Passport",
                                       controller: _idCard,
-                                      edit: editState,
+                                      edit: false,
                                       keyboardType: TextInputType.text),
                                   Row(
                                     children: [

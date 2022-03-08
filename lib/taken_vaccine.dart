@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/certificate_detail.dart';
-
 import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
-import 'package:vaccinationapp/list_data.dart';
 
 class TakenVaccine extends StatefulWidget {
   TakenVaccine({Key? key}) : super(key: key);
@@ -35,13 +33,13 @@ class TakenVaccineState extends State<TakenVaccine> {
         .get();
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           centerTitle: true,
           title: const Text(
             "Taken Vaccines",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontFamily: FitnessAppTheme.fontName,
               fontWeight: FontWeight.bold,
@@ -60,12 +58,12 @@ class TakenVaccineState extends State<TakenVaccine> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(30)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: DesignCourseAppTheme.nearlyBlue, width: 2.5),
                         borderRadius: BorderRadius.circular(30)),
                     fillColor: Colors.white,
@@ -103,9 +101,10 @@ class TakenVaccineState extends State<TakenVaccine> {
               }
               EasyLoading.dismiss();
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisExtent: 155,
                     ),
@@ -113,173 +112,165 @@ class TakenVaccineState extends State<TakenVaccine> {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       ...snapshot.data!.docs
-                          .where((element) => element["name1"]
+                          .where((element) => element["vaccine_name1"]
                               .toString()
                               .toLowerCase()
                               .contains(_searchController.text.toLowerCase()))
-                          .map((data) => InkWell(
-                              onTap: () => onHATapped(data),
-                              child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, top: 0, bottom: 10),
-                                  child: Container(
-                                    height: 140,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      color: FitnessAppTheme.white,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(8.0),
-                                          bottomLeft: Radius.circular(8.0),
-                                          bottomRight: Radius.circular(8.0),
-                                          topRight: Radius.circular(68.0)),
-                                      boxShadow: <BoxShadow>[
-                                        BoxShadow(
-                                            color: FitnessAppTheme.grey
-                                                .withOpacity(0.2),
-                                            offset: Offset(1.1, 1.1),
-                                            blurRadius: 10.0),
-                                      ],
-                                    ),
-                                    child: Stack(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 16, left: 16, right: 24),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 4, bottom: 8),
-                                                child: Text(
-                                                  data["name1"],
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontFamily:
-                                                          FitnessAppTheme
-                                                              .fontName,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 22,
-                                                      letterSpacing: -0.1,
-                                                      color:
-                                                          DesignCourseAppTheme
-                                                              .nearlyBlue),
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 4,
-                                                                bottom: 3,
-                                                                top: 7),
-                                                        child: Text(
-                                                          '${data["dose_number${data['latest']}"]} Dose',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                FitnessAppTheme
-                                                                    .fontName,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color: Color(
-                                                                0xffb3b3b3),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 4,
-                                                                bottom: 3),
-                                                        child: Text(
-                                                          "${data["date"].toDate().day}/${data["date"].toDate().month}/${data["date"].toDate().year}",
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  FitnessAppTheme
-                                                                      .fontName,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800,
-                                                              color: Color(
-                                                                  0xffb3b3b3)),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
+                          .map((data) => data["latest"] != "0"
+                              ? InkWell(
+                                  onTap: () => onHATapped(data),
+                                  child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 10),
+                                      child: Container(
+                                        height: 140,
+                                        width: 300,
+                                        decoration: BoxDecoration(
+                                          color: FitnessAppTheme.white,
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(8.0),
+                                              bottomLeft: Radius.circular(8.0),
+                                              bottomRight: Radius.circular(8.0),
+                                              topRight: Radius.circular(68.0)),
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                                color: FitnessAppTheme.grey
+                                                    .withOpacity(0.2),
+                                                offset: const Offset(1.1, 1.1),
+                                                blurRadius: 10.0),
+                                          ],
                                         ),
-                                        // Positioned(
-                                        //   top: 0,
-                                        //   left: 0,
-                                        //   child: Container(
-                                        //     width: 84,
-                                        //     height: 84,
-                                        //     decoration: BoxDecoration(
-                                        //       color: FitnessAppTheme.nearlyWhite
-                                        //           .withOpacity(0.2),
-                                        //       shape: BoxShape.circle,
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // Positioned(
-                                        //   top: 0,
-                                        //   left: 0,
-                                        //   child: SizedBox(
-                                        //     width: 100,
-                                        //     height: 100,
-                                        //     child: Image.asset(
-                                        //         "assets/pics/vaccine.png"),
-                                        //   ),
-                                        // )
-                                      ],
-                                    ),
-                                  ))))
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 16, left: 16, right: 24),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 4, bottom: 8),
+                                                    child: Text(
+                                                      data["vaccine_name1"],
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: const TextStyle(
+                                                          fontFamily:
+                                                              FitnessAppTheme
+                                                                  .fontName,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          fontSize: 22,
+                                                          letterSpacing: -0.1,
+                                                          color:
+                                                              DesignCourseAppTheme
+                                                                  .nearlyBlue),
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 4,
+                                                                    bottom: 3,
+                                                                    top: 7),
+                                                            child: Text(
+                                                              '${data["dose_number${data['latest']}"]} Dose',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontFamily:
+                                                                    FitnessAppTheme
+                                                                        .fontName,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                                color: Color(
+                                                                    0xffb3b3b3),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 4,
+                                                                    bottom: 3),
+                                                            child: Text(
+                                                              "${data["date"].toDate().day}/${data["date"].toDate().month}/${data["date"].toDate().year}",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: const TextStyle(
+                                                                  fontFamily:
+                                                                      FitnessAppTheme
+                                                                          .fontName,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w800,
+                                                                  color: Color(
+                                                                      0xffb3b3b3)),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )))
+                              : Container())
                     ]),
               );
             },
@@ -288,16 +279,6 @@ class TakenVaccineState extends State<TakenVaccine> {
   }
 
   void onHATapped(DocumentSnapshot data) {
-    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
-
     Get.to(() => CertificateDetail(data: data), transition: Transition.zoom);
-
-    // Navigator.push(
-
-    //   context,
-
-    //   MaterialPageRoute(builder: (context) => const MyDiaryScreen()),
-
-    // );
   }
 }

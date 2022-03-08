@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:vaccinationapp/scanner.dart';
-
 import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
-import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class CQrCode extends StatelessWidget {
-  CQrCode({Key? key}) : super(key: key);
+  final url;
+  CQrCode({Key? key, required String this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class CQrCode extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         centerTitle: true,
@@ -35,7 +33,7 @@ class CQrCode extends StatelessWidget {
               child: Container(
                   color: Colors.white,
                   child: QrImage(
-                    data: uid,
+                    data: url,
                     size: 0.8 * width,
                   )),
             ),

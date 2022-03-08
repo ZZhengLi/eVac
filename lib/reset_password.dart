@@ -65,8 +65,7 @@ class ResetPassword extends StatelessWidget {
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Color(0xfff2f3f8)),
                               borderRadius: BorderRadius.circular(10))),
-                      validator: RequiredValidator(
-                          errorText: "Password can't be null"),
+                      validator: passwordValidator,
                       onSaved: (password) => _password = password!,
                       onChanged: (pass) => _password = pass,
                     ),

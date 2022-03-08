@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\SeniorProj\\vaccinationApp\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "D:\\1A\\University\\Year 2021-2\\Senior Project\\vaccinationApp2\\vaccinationApp\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\f5244bbd805202ceededffdc728f0c47\\transformed\\appcompat-1.3.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\82140\\.gradle\\caches\\transforms-3\\f5244bbd805202ceededffdc728f0c47\\transformed\\appcompat-1.3.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\81b4f87c208e1677cfc80623f6dcbf25\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\82140\\.gradle\\caches\\transforms-3\\81b4f87c208e1677cfc80623f6dcbf25\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

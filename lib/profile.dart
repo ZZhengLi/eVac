@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/firebase/firebase.dart';
 import 'package:vaccinationapp/info_page.dart';
-
-import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -91,7 +89,6 @@ class ProfilePage extends StatelessWidget {
                                               await pickSaveImage("avatar");
                                           await changeImg(
                                               imgUrl.toString(), "photoUrl");
-                                          EasyLoading.dismiss();
                                         },
                                       ),
                                       ListTile(
@@ -101,8 +98,8 @@ class ProfilePage extends StatelessWidget {
                                             "Change Background Image"),
                                         onTap: () async {
                                           Navigator.pop(context);
-                                          var imgUrl =
-                                              await pickSaveImage("bgi");
+                                          var imgUrl = await pickSaveImage(
+                                              "backgroundImg");
 
                                           await changeImg(imgUrl.toString(),
                                               "backgroundImg");

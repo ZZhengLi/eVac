@@ -20,10 +20,12 @@ class LatestVaccination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String latest = data["latest"];
-    final String name = data["name$latest"];
-    final String dose = data["dose_number$latest"];
-    final String place = data["place_of_service$latest"];
-    final DateTime date = data["date$latest"].toDate();
+    final String name = latest != "0" ? data["vaccine_name$latest"] : "";
+    final String dose = latest != "0" ? data["dose_number$latest"] : "";
+    final String place = latest != "0" ? data["place_of_service$latest"] : "";
+    final String url = latest != "0" ? data["url"] : "";
+    final DateTime date =
+        latest != "0" ? data["date$latest"].toDate() : DateTime.now();
     final _usersStream =
         FirebaseFirestore.instance.doc("Users/$uid").snapshots();
 
@@ -41,12 +43,12 @@ class LatestVaccination extends StatelessWidget {
           EasyLoading.dismiss();
           return Scaffold(
             appBar: AppBar(
-              iconTheme: IconThemeData(
+              iconTheme: const IconThemeData(
                 color: DesignCourseAppTheme.darkerText,
               ),
               centerTitle: true,
               title: const Text("Latest Vaccination",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: DesignCourseAppTheme.darkerText,
                       fontFamily: FitnessAppTheme.fontName,
                       fontWeight: FontWeight.bold,
@@ -57,66 +59,14 @@ class LatestVaccination extends StatelessWidget {
             backgroundColor: FitnessAppTheme.background,
             body: SafeArea(
               child: ListView(children: [
-                // final String id = data["lot_number1"];
-
-                date.isAfter(DateTime(2000))
-                    // ? InkWell(
-                    //     child: Container(
-                    //       padding: const EdgeInsets.all(10),
-                    //       child: Card(
-                    //         color: const Color(0xff263950),
-                    //         child: Column(
-                    //           children: [
-                    //             ListTile(
-                    //                 leading: SvgPicture.asset(
-                    //                     "assets/icons/vaccines.svg",
-                    //                     color: Colors.white,
-                    //                     height: 40,
-                    //                     semanticsLabel: 'vaccines'),
-                    //                 title: Text(name,
-                    //                     style: const TextStyle(
-                    //                       color: Colors.white,
-                    //                       fontSize: 20,
-                    //                     )),
-                    //                 subtitle: Text(id,
-                    //                     style: const TextStyle(
-                    //                       color: Colors.white,
-                    //                     )),
-                    //                 trailing: const Icon(
-                    //                   Icons.navigate_next,
-                    //                   color: Colors.white,
-                    //                 )),
-                    //             ListTile(
-                    //                 title: Text(
-                    //                     "${date.year.toString()}-${date.month.toString()}-${date.day.toString()}",
-                    //                     style: const TextStyle(
-                    //                       color: Colors.white,
-                    //                     )))
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     onTap: () {
-                    //       Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //               builder: (context) =>
-                    //                   CertificateDetail(data: data)));
-                    //     },
-                    //   )
+                latest != "0"
                     ? Padding(
                         padding: const EdgeInsets.only(
                             left: 24, right: 24, top: 16, bottom: 18),
-                        //           Text(
-                        //   "      Scanner will know your medical information,\nappointment details when they scan your QR code.",
-                        //   style: TextStyle(
-                        //     color: FitnessAppTheme.grey,
-                        //   ),
-                        // ),
                         child: Container(
                           decoration: BoxDecoration(
                             color: FitnessAppTheme.white,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(8.0),
                                 bottomLeft: Radius.circular(8.0),
                                 bottomRight: Radius.circular(8.0),
@@ -124,7 +74,7 @@ class LatestVaccination extends StatelessWidget {
                             boxShadow: <BoxShadow>[
                               BoxShadow(
                                   color: FitnessAppTheme.grey.withOpacity(0.2),
-                                  offset: Offset(1.1, 1.1),
+                                  offset: const Offset(1.1, 1.1),
                                   blurRadius: 10.0),
                             ],
                           ),
@@ -147,10 +97,11 @@ class LatestVaccination extends StatelessWidget {
                                                   height: 48,
                                                   width: 2,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xff87A0E5)
-                                                        .withOpacity(0.5),
+                                                    color:
+                                                        const Color(0xff87A0E5)
+                                                            .withOpacity(0.5),
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 4.0)),
                                                   ),
@@ -212,7 +163,8 @@ class LatestVaccination extends StatelessWidget {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 fontFamily:
                                                                     FitnessAppTheme
                                                                         .fontName,
@@ -232,7 +184,7 @@ class LatestVaccination extends StatelessWidget {
                                                 )
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Row(
@@ -241,10 +193,11 @@ class LatestVaccination extends StatelessWidget {
                                                   height: 48,
                                                   width: 2,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xffF56E98)
-                                                        .withOpacity(0.5),
+                                                    color:
+                                                        const Color(0xffF56E98)
+                                                            .withOpacity(0.5),
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 4.0)),
                                                   ),
@@ -306,7 +259,8 @@ class LatestVaccination extends StatelessWidget {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 fontFamily:
                                                                     FitnessAppTheme
                                                                         .fontName,
@@ -326,7 +280,7 @@ class LatestVaccination extends StatelessWidget {
                                                 )
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Row(
@@ -335,10 +289,11 @@ class LatestVaccination extends StatelessWidget {
                                                   height: 48,
                                                   width: 2,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xffFFC061)
-                                                        .withOpacity(0.5),
+                                                    color:
+                                                        const Color(0xffFFC061)
+                                                            .withOpacity(0.5),
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 4.0)),
                                                   ),
@@ -399,7 +354,8 @@ class LatestVaccination extends StatelessWidget {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 fontFamily:
                                                                     FitnessAppTheme
                                                                         .fontName,
@@ -431,7 +387,7 @@ class LatestVaccination extends StatelessWidget {
                                     left: 24, right: 24, top: 8, bottom: 8),
                                 child: Container(
                                   height: 2,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: FitnessAppTheme.background,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4.0)),
@@ -453,7 +409,7 @@ class LatestVaccination extends StatelessWidget {
                                           Text(
                                             name,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontFamily:
                                                   FitnessAppTheme.fontName,
                                               fontWeight: FontWeight.w500,
@@ -497,7 +453,7 @@ class LatestVaccination extends StatelessWidget {
                                               Text(
                                                 '${dose} Dose',
                                                 textAlign: TextAlign.center,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontFamily:
                                                       FitnessAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
@@ -543,7 +499,7 @@ class LatestVaccination extends StatelessWidget {
                                             children: [
                                               Text(
                                                 "${date.day}/${date.month}/${date.year}",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontFamily:
                                                       FitnessAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
@@ -581,22 +537,32 @@ class LatestVaccination extends StatelessWidget {
                           ),
                         ))
                     : Container(),
-
-                Container(
-                  margin: const EdgeInsets.only(top: 10.0),
-                  child: QrImage(data: uid),
-                  height: 200,
-                  alignment: Alignment.center,
-                ),
+                latest != "0"
+                    ? Container(
+                        margin: const EdgeInsets.only(top: 10.0),
+                        child: QrImage(data: url),
+                        height: 200,
+                        alignment: Alignment.center,
+                      )
+                    : Container(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
-                  child: Text(
-                    "Scanners will see your vaccination certificate when they scan your QR code.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: FitnessAppTheme.grey,
-                    ),
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+                  child: latest != "0"
+                      ? const Text(
+                          "Scanners will see your vaccination certificate when they scan your QR code.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: FitnessAppTheme.grey,
+                          ),
+                        )
+                      : const Text(
+                          "You haven't taken any vaccine",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: FitnessAppTheme.grey,
+                          ),
+                        ),
                 ),
               ]),
             ),

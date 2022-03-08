@@ -129,12 +129,6 @@ class DrawerPage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xffffffff),
-                border: Border(
-                  bottom: BorderSide(width: 5, color: Colors.black),
-                ),
-              ),
               alignment: Alignment.bottomLeft,
               child: ListTile(
                 leading: const CircleAvatar(
@@ -154,15 +148,14 @@ class DrawerPage extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text('Confirm',
-                            style: TextStyle(color: Colors.white)),
-                        content: const Text('Are you sure to sign out?',
-                            style: TextStyle(color: Colors.white)),
+                        title: const Text(
+                          'Confirm',
+                        ),
+                        content: const Text(
+                          'Are you sure to sign out?',
+                        ),
                         actions: <Widget>[
                           ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xff263950))),
                             child: const Text('YES'),
                             onPressed: () {
                               Navigator.of(context).pop();
@@ -177,16 +170,12 @@ class DrawerPage extends StatelessWidget {
                             },
                           ),
                           ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xff263950))),
                             child: const Text('NO'),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                           ),
                         ],
-                        backgroundColor: const Color(0xff121421),
                         elevation: 20,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),

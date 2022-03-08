@@ -37,13 +37,13 @@ class NextAppointment extends StatelessWidget {
         EasyLoading.dismiss();
         return Scaffold(
           appBar: AppBar(
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: DesignCourseAppTheme.darkerText,
             ),
             centerTitle: true,
             title: const Text(
               "Next Appointment",
-              style: const TextStyle(
+              style: TextStyle(
                 color: DesignCourseAppTheme.darkerText,
                 fontFamily: FitnessAppTheme.fontName,
                 fontWeight: FontWeight.bold,
@@ -59,8 +59,8 @@ class NextAppointment extends StatelessWidget {
               children: [
                 ...snapshot.data!.docs.map((QueryDocumentSnapshot data) {
                   final DateTime time = data["time"].toDate();
-                  if (time
-                      .isBefore(DateTime.now().subtract(Duration(days: 1)))) {
+                  if (time.isBefore(
+                      DateTime.now().subtract(const Duration(days: 1)))) {
                     FirebaseFirestore.instance
                         .doc("Users/$uid")
                         .collection("Appointment")
@@ -68,60 +68,14 @@ class NextAppointment extends StatelessWidget {
                         .delete();
                   }
 
-                  return time.isAfter(DateTime(2000))
-                      /*from here delete for original*/
-                      // ? AnimatedBuilder(
-                      //     animation: animationController!,
-                      //     builder: (BuildContext context, Widget? child) {
-                      //       return FadeTransition(
-                      //         opacity: animation!,
-                      //         child: new Transform(
-                      //           transform: new Matrix4.translationValues(
-                      //               0.0, 30 * (1.0 - animation!.value), 0.0),
-                      //           child: Padding(
-                      //             padding: const EdgeInsets.only(
-                      //                 left: 24, right: 24, top: 16, bottom: 18),
-                      //             child: Container(
-                      //               decoration: BoxDecoration(
-                      //                 color: FitnessAppTheme.white,
-                      //                 borderRadius: BorderRadius.only(
-                      //                     topLeft: Radius.circular(8.0),
-                      //                     bottomLeft: Radius.circular(8.0),
-                      //                     bottomRight: Radius.circular(8.0),
-                      //                     topRight: Radius.circular(68.0)),
-                      //                 boxShadow: <BoxShadow>[
-                      //                   BoxShadow(
-                      //                       color: FitnessAppTheme.grey
-                      //                           .withOpacity(0.2),
-                      //                       offset: Offset(1.1, 1.1),
-                      //                       blurRadius: 10.0),
-                      //                 ],
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       );
-                      //     },
-                      //   )
-                      // : Container();
-                      // ? Card(
-                      //     color: const Color(0xff263950),
-                      // child: ListTile(
-                      //     title: Text(
-                      //         "${time.year.toString()}-${time.month.toString()}-${time.day.toString()}",
-                      //         style: const TextStyle(
-                      //           color: Colors.white,
-                      //         ))),
-
-                      //   )
-                      // : Container();
+                  return time.isBefore(DateTime(2200))
                       ? Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 10, top: 20),
                           child: Container(
                             decoration: BoxDecoration(
                               color: FitnessAppTheme.white,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(8.0),
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
@@ -130,7 +84,7 @@ class NextAppointment extends StatelessWidget {
                                 BoxShadow(
                                     color:
                                         FitnessAppTheme.grey.withOpacity(0.2),
-                                    offset: Offset(1.1, 1.1),
+                                    offset: const Offset(1.1, 1.1),
                                     blurRadius: 10.0),
                               ],
                             ),
@@ -153,7 +107,7 @@ class NextAppointment extends StatelessWidget {
                                         child: Text(
                                           data["place_of_service"],
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontFamily:
                                                   FitnessAppTheme.fontName,
                                               fontWeight: FontWeight.w500,
@@ -180,7 +134,7 @@ class NextAppointment extends StatelessWidget {
                                                 child: Text(
                                                   data["vaccine_name"],
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily: FitnessAppTheme
                                                         .fontName,
                                                     fontWeight: FontWeight.w600,
@@ -196,7 +150,7 @@ class NextAppointment extends StatelessWidget {
                                                 child: Text(
                                                   data["dose_number"],
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily: FitnessAppTheme
                                                         .fontName,
                                                     fontWeight: FontWeight.w500,
@@ -272,7 +226,7 @@ class NextAppointment extends StatelessWidget {
                                                 child: Text(
                                                   data["provider_name"],
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily: FitnessAppTheme
                                                         .fontName,
                                                     fontWeight: FontWeight.w500,
@@ -295,7 +249,7 @@ class NextAppointment extends StatelessWidget {
                                       left: 24, right: 24, top: 8, bottom: 8),
                                   child: Container(
                                     height: 2,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: FitnessAppTheme.background,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(4.0)),
@@ -331,15 +285,19 @@ class NextAppointment extends StatelessWidget {
                                                 ),
                                                 boxShadow: <BoxShadow>[
                                                   BoxShadow(
-                                                      color: Color.fromRGBO(
-                                                              255, 82, 135, 0.8)
-                                                          .withOpacity(0.5),
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                                  255,
+                                                                  82,
+                                                                  135,
+                                                                  0.8)
+                                                              .withOpacity(0.5),
                                                       offset: const Offset(
                                                           1.1, 1.1),
                                                       blurRadius: 10.0),
                                                 ],
                                               ),
-                                              child: Center(
+                                              child: const Center(
                                                 child: Text(
                                                   'Cancel Appointment',
                                                   textAlign: TextAlign.left,
