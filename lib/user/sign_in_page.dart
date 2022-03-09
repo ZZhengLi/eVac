@@ -4,10 +4,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:vaccinationapp/forgot_password.dart';
 import 'package:vaccinationapp/home_page.dart';
 import 'package:vaccinationapp/user/sign_up_page.dart';
-
-import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class SignInPage extends StatelessWidget {
@@ -85,11 +84,12 @@ class SignInPage extends StatelessWidget {
                       style: const TextStyle(fontSize: 14, color: Colors.black),
                       decoration: InputDecoration(
                           hintText: "Email",
-                          fillColor: Color(0xfff2f3f8),
+                          fillColor: const Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xfff2f3f8)),
                               borderRadius: BorderRadius.circular(10))),
                       validator: EmailValidator(
                           errorText: "Enter a valid email address"),
@@ -104,11 +104,12 @@ class SignInPage extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Password",
-                          fillColor: Color(0xfff2f3f8),
+                          fillColor: const Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xfff2f3f8)),
                               borderRadius: BorderRadius.circular(10))),
                       onSaved: (password) => _password = password!,
                       onFieldSubmitted: (v) async {
@@ -134,9 +135,9 @@ class SignInPage extends StatelessWidget {
                     style: const TextStyle(fontSize: 13, color: Colors.red),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.pushReplacement(context,
+                        Navigator.push(context,
                             CupertinoPageRoute(builder: (context) {
-                          return SignUpPage();
+                          return ForgotPassword();
                         }));
                       }))
               ],

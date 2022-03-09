@@ -129,6 +129,15 @@ class ProfilePage extends StatelessWidget {
                                 color: Colors.blueGrey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500))),
+                    Container(
+                      padding:
+                          EdgeInsets.fromLTRB(0.1 * width, 0.03 * height, 0, 0),
+                      child: snapshot.data["verification"] == true
+                          ? const Text("√Verified",
+                              style: TextStyle(color: Colors.green))
+                          : const Text("×Unverified",
+                              style: TextStyle(color: Colors.red)),
+                    )
                   ],
                 ),
                 Container(

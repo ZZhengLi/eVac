@@ -258,11 +258,48 @@ class NextAppointment extends StatelessWidget {
                                 ),
                                 InkWell(
                                     onTap: () async {
-                                      await FirebaseFirestore.instance
-                                          .doc("Users/$uid")
-                                          .collection("Appointment")
-                                          .doc(data.reference.id)
-                                          .delete();
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                              'Confirm',
+                                            ),
+                                            content: const Text(
+                                              'Are you sure to cancel this appointment?',
+                                            ),
+                                            actions: <Widget>[
+                                              ElevatedButton(
+                                                child: const Text('YES'),
+                                                onPressed: () async {
+                                                  Navigator.of(context).pop();
+                                                  EasyLoading.show(
+                                                      maskType:
+                                                          EasyLoadingMaskType
+                                                              .black);
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .doc("Users/$uid")
+                                                      .collection("Appointment")
+                                                      .doc(data.reference.id)
+                                                      .delete();
+                                                  EasyLoading.dismiss();
+                                                },
+                                              ),
+                                              ElevatedButton(
+                                                child: const Text('NO'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                            elevation: 20,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          );
+                                        },
+                                      );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(

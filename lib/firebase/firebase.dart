@@ -72,8 +72,9 @@ Future<void> userSetup(
     required String id}) async {
   await FirebaseFirestore.instance.doc("Users/$uid").set({
     "uid": uid,
+    "verification": false,
     "displayName": displayname,
-    'email': email,
+    "email": email,
     "phone": phone,
     "id": id,
     "height": "",

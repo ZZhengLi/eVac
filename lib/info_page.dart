@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
-import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class InfoPage extends StatefulWidget {
@@ -19,6 +17,7 @@ class _InfoPageState extends State<InfoPage> {
   late Stream _usersStream;
   late String uid;
   bool editState = false;
+  late bool _verification;
   late String _gender;
   late DateTime _dob;
   late TextEditingController _name,
@@ -50,6 +49,7 @@ class _InfoPageState extends State<InfoPage> {
       _height = TextEditingController(text: value.data()!["height"]);
       _gender = value.data()!["gender"];
       _dob = value.data()!["dob"].toDate();
+      _verification = value.data()!["verification"];
     });
   }
 
@@ -183,12 +183,12 @@ class _InfoPageState extends State<InfoPage> {
                                   infos(
                                       title: "Name",
                                       controller: _name,
-                                      edit: false,
+                                      edit: !_verification && editState,
                                       keyboardType: TextInputType.name),
                                   infos(
                                       title: "ID Card/Passport",
                                       controller: _idCard,
-                                      edit: false,
+                                      edit: !_verification && editState,
                                       keyboardType: TextInputType.text),
                                   Row(
                                     children: [
@@ -260,11 +260,11 @@ class _InfoPageState extends State<InfoPage> {
                                           )),
                                       Expanded(
                                         child: Material(
-                                          color: editState
+                                          color: !_verification && editState
                                               ? const Color(0xffffffff)
                                               : Colors.transparent,
                                           child: InkWell(
-                                              onTap: editState
+                                              onTap: !_verification && editState
                                                   ? () {
                                                       DatePicker.showDatePicker(
                                                           context,

@@ -186,6 +186,11 @@ class _ScannerState extends State<Scanner> {
                     "latest": value["dose_number"],
                     "date": value["date"],
                   });
+            await FirebaseFirestore.instance
+                .doc("Users/$_uid")
+                .collection("Appointment")
+                .doc(value["name"] + value["dose_number"])
+                .delete();
             await _createPDF(
               value["displayName"],
               value["dob"].toDate(),
