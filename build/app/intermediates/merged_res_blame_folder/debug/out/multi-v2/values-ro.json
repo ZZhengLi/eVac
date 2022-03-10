@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\1A\\University\\Year 2021-2\\Senior Project\\vaccinationApp2\\vaccinationApp\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ro\\values-ro.xml",
+            "outputFile": "D:\\1A\\University\\Year 2021-2\\Senior Project\\vaccinationApp2\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ro\\values-ro.xml",
             "map": [
                 {
                     "source": "C:\\Users\\82140\\.gradle\\caches\\transforms-3\\f90a9a2ec145a7c354574a09b34c169d\\transformed\\jetified-zxing-android-embedded-4.2.0\\res\\values-ro\\values-ro.xml",

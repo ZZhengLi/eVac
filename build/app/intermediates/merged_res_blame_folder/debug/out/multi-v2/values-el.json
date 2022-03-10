@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\1A\\University\\Year 2021-2\\Senior Project\\vaccinationApp2\\vaccinationApp\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-el\\values-el.xml",
+            "outputFile": "D:\\1A\\University\\Year 2021-2\\Senior Project\\vaccinationApp2\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-el\\values-el.xml",
             "map": [
                 {
                     "source": "C:\\Users\\82140\\.gradle\\caches\\transforms-3\\7492b9bf76142f48445b76b79c1f5fe5\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-el\\values.xml",

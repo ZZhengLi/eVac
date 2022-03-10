@@ -375,14 +375,14 @@ class _InfoPageState extends State<InfoPage> {
                                       edit: editState,
                                       keyboardType: TextInputType.text),
                                   infos(
-                                      title: "Weight",
+                                      title: "Weight(kg)",
                                       controller: _weight,
                                       edit: editState,
                                       keyboardType:
                                           const TextInputType.numberWithOptions(
                                               decimal: true)),
                                   infos(
-                                      title: "Height",
+                                      title: "Height(cm)",
                                       controller: _height,
                                       edit: editState,
                                       keyboardType:

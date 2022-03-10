@@ -179,7 +179,7 @@ class SignUpPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 45),
+                  const SizedBox(height: 45),
                   SizedBox(
                     width: double.infinity,
                     height: 45,
@@ -193,6 +193,7 @@ class SignUpPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0),
                           )))),
                       onPressed: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           EasyLoading.show(maskType: EasyLoadingMaskType.black);

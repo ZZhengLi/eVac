@@ -12,74 +12,74 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\debug\AndroidManifest.xml:6:5-66
-14-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\debug\AndroidManifest.xml:6:22-64
+14-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\debug\AndroidManifest.xml:6:22-64
 15
 16    <queries>
-16-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:3:5-29:13
+16-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:3:5-29:13
 17
 18        <!-- If your app opens https URLs -->
 19        <intent>
-19-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:5:5-8:14
+19-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:5:5-8:14
 20            <action android:name="android.intent.action.VIEW" />
-20-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:7-59
-20-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:15-56
+20-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:7-59
+20-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:15-56
 21
 22            <data android:scheme="https" />
-22-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
-22-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+22-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
+22-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 23        </intent>
 24        <!-- If your app opens http URLs -->
 25        <intent>
-25-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:10:5-13:14
+25-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:10:5-13:14
 26            <action android:name="android.intent.action.VIEW" />
-26-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:7-59
-26-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:15-56
+26-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:7-59
+26-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:15-56
 27
 28            <data android:scheme="http" />
-28-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
-28-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+28-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
+28-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 29        </intent>
 30        <!-- If your app makes calls -->
 31        <intent>
-31-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:15:5-18:14
+31-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:15:5-18:14
 32            <action android:name="android.intent.action.DIAL" />
-32-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:16:7-59
-32-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:16:15-56
+32-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:16:7-59
+32-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:16:15-56
 33
 34            <data android:scheme="tel" />
-34-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
-34-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+34-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
+34-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 35        </intent>
 36        <!-- If your sends SMS messages -->
 37        <intent>
-37-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:20:5-23:14
+37-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:20:5-23:14
 38            <action android:name="android.intent.action.SENDTO" />
-38-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:21:7-61
-38-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:21:15-58
+38-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:21:7-61
+38-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:21:15-58
 39
 40            <data android:scheme="smsto" />
-40-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
-40-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+40-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
+40-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 41        </intent>
 42        <!-- If your app sends emails -->
 43        <intent>
-43-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:25:5-28:14
+43-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:25:5-28:14
 44            <action android:name="android.intent.action.SEND" />
-44-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:26:7-59
-44-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:26:15-56
+44-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:26:7-59
+44-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:26:15-56
 45
 46            <data android:mimeType="*/*" />
-46-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
+46-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
 47        </intent>
 48    </queries>
 49
 50    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-50-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-83
-50-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-80
+50-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-83
+50-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-80
 51    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-51-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
-51-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
+51-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
+51-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
 52    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 52-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:24:5-79
 52-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:24:22-76
@@ -134,32 +134,32 @@
 75-->[com.journeyapps:zxing-android-embedded:4.2.0] C:\Users\82140\.gradle\caches\transforms-3\f90a9a2ec145a7c354574a09b34c169d\transformed\jetified-zxing-android-embedded-4.2.0\AndroidManifest.xml:44:9-33
 76
 77    <application
-77-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:30:4-69:19
+77-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:30:4-69:19
 78        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 78-->[androidx.core:core:1.6.0] C:\Users\82140\.gradle\caches\transforms-3\1f832c3f39d90ac016242d0eef1cfa52\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 79        android:debuggable="true"
 80        android:icon="@mipmap/ic_launcher"
-80-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:32:9-43
+80-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:32:9-43
 81        android:label="vaccinationapp"
-81-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:31:9-39
+81-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:31:9-39
 82        android:usesCleartextTraffic="true" >
-82-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:33:9-44
+82-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:33:9-44
 83        <activity
-83-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:34:9-63:20
+83-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:34:9-63:20
 84            android:name="com.seniorproject.vaccinationapp.MainActivity"
-84-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:35:13-41
+84-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:35:13-41
 85            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-85-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:39:13-163
+85-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:39:13-163
 86            android:exported="true"
-86-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:36:13-36
+86-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:36:13-36
 87            android:hardwareAccelerated="true"
-87-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:40:13-47
+87-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:40:13-47
 88            android:launchMode="singleTop"
-88-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:37:13-43
+88-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:37:13-43
 89            android:theme="@style/LaunchTheme"
-89-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:38:13-47
+89-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:38:13-47
 90            android:windowSoftInputMode="adjustResize" >
-90-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:41:13-55
+90-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:41:13-55
 91
 92            <!--
 93                 Specifies an Android theme to apply to this Activity as soon as
@@ -168,11 +168,11 @@
 96                 to determine the Window background behind the Flutter UI.
 97            -->
 98            <meta-data
-98-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:46:13-49:17
+98-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:46:13-49:17
 99                android:name="io.flutter.embedding.android.NormalTheme"
-99-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:47:15-70
+99-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:47:15-70
 100                android:resource="@style/NormalTheme" />
-100-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:48:15-52
+100-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:48:15-52
 101            <!--
 102                 Displays an Android View that continues showing the launch screen
 103                 Drawable until Flutter paints its first frame, then this splash
@@ -181,21 +181,21 @@
 106                 Flutter's first frame.
 107            -->
 108            <meta-data
-108-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:55:13-58:17
+108-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:55:13-58:17
 109                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-109-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:56:15-79
+109-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:56:15-79
 110                android:resource="@drawable/launch_background" />
-110-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:57:15-61
+110-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:57:15-61
 111
 112            <intent-filter>
-112-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:59:13-62:29
+112-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:59:13-62:29
 113                <action android:name="android.intent.action.MAIN" />
-113-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:60:17-68
-113-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:60:25-66
+113-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:60:17-68
+113-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:60:25-66
 114
 115                <category android:name="android.intent.category.LAUNCHER" />
-115-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:61:17-76
-115-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:61:27-74
+115-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:61:17-76
+115-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:61:27-74
 116            </intent-filter>
 117        </activity>
 118        <!--
@@ -203,44 +203,44 @@
 120             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 121        -->
 122        <meta-data
-122-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:66:9-68:33
+122-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:66:9-68:33
 123            android:name="flutterEmbedding"
-123-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:67:13-44
+123-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:67:13-44
 124            android:value="2" />
-124-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:68:13-30
+124-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:68:13-30
 125
 126        <service
-126-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:19
+126-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:19
 127            android:name="com.google.firebase.components.ComponentDiscoveryService"
-127-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:8:18-89
+127-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:8:18-89
 128            android:directBootAware="true"
 128-->[com.google.firebase:firebase-common:20.0.0] C:\Users\82140\.gradle\caches\transforms-3\1b61674ae02005112346fa6e5d754ca8\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
 129            android:exported="false" >
 129-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:76:13-37
 130            <meta-data
-130-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
+130-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
 131                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
-131-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-124
+131-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-124
 132                android:value="com.google.firebase.components.ComponentRegistrar" />
-132-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
+132-->[:firebase_auth] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
 133            <meta-data
-133-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
+133-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
 134                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
-134-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-126
+134-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-126
 135                android:value="com.google.firebase.components.ComponentRegistrar" />
-135-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
+135-->[:firebase_storage] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
 136            <meta-data
-136-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
+136-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
 137                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
-137-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-134
+137-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-134
 138                android:value="com.google.firebase.components.ComponentRegistrar" />
-138-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
+138-->[:cloud_firestore] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
 139            <meta-data
-139-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
+139-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-11:85
 140                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
-140-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-124
+140-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:17-124
 141                android:value="com.google.firebase.components.ComponentRegistrar" />
-141-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
+141-->[:firebase_core] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:17-82
 142            <meta-data
 142-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:77:13-79:85
 143                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
@@ -274,48 +274,48 @@
 157        </service>
 158
 159        <provider
-159-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
+159-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
 160            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-160-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-82
+160-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-82
 161            android:authorities="com.seniorproject.vaccinationapp.flutter.image_provider"
-161-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-74
+161-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-74
 162            android:exported="false"
-162-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+162-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
 163            android:grantUriPermissions="true" >
-163-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
+163-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
 164            <meta-data
-164-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:75
+164-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:75
 165                android:name="android.support.FILE_PROVIDER_PATHS"
-165-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
+165-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
 166                android:resource="@xml/flutter_image_picker_file_paths" />
-166-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-72
+166-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-72
 167        </provider>
 168        <provider
-168-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-21:20
+168-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-21:20
 169            android:name="com.crazecoder.openfile.FileProvider"
-169-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-64
+169-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-64
 170            android:authorities="com.seniorproject.vaccinationapp.fileProvider.com.crazecoder.openfile"
-170-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-88
+170-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-88
 171            android:exported="false"
-171-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-37
+171-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-37
 172            android:grantUriPermissions="true" >
-172-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-47
+172-->[:open_file] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\open_file\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-47
 173            <meta-data
-173-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:75
+173-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:75
 174                android:name="android.support.FILE_PROVIDER_PATHS"
-174-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
+174-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
 175                android:resource="@xml/filepaths" />
-175-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-72
+175-->[:image_picker] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\image_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-72
 176        </provider>
 177
 178        <activity
-178-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
+178-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
 179            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-179-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
+179-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
 180            android:exported="false"
-180-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-37
+180-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-37
 181            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-181-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
+181-->[:url_launcher_android] D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
 182
 183        <uses-library
 183-->[androidx.window:window:1.0.0-beta04] C:\Users\82140\.gradle\caches\transforms-3\c56f8c658429a5f28658e5eb50a08b5a\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
@@ -345,8 +345,8 @@
 196            <intent-filter>
 196-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:33:13-43:29
 197                <action android:name="android.intent.action.VIEW" />
-197-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:7-59
-197-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:15-56
+197-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:7-59
+197-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:15-56
 198
 199                <category android:name="android.intent.category.DEFAULT" />
 199-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:36:17-76
@@ -356,11 +356,11 @@
 200-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:37:27-75
 201
 202                <data
-202-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
+202-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
 203                    android:host="firebase.auth"
 204                    android:path="/"
 205                    android:scheme="genericidp" />
-205-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+205-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 206            </intent-filter>
 207        </activity>
 208        <activity
@@ -378,8 +378,8 @@
 214            <intent-filter>
 214-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:51:13-61:29
 215                <action android:name="android.intent.action.VIEW" />
-215-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:7-59
-215-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:6:15-56
+215-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:7-59
+215-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:6:15-56
 216
 217                <category android:name="android.intent.category.DEFAULT" />
 217-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:36:17-76
@@ -389,11 +389,11 @@
 218-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\82140\.gradle\caches\transforms-3\aa4dbe1c0e90c81bdccd27a7311a9076\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:37:27-75
 219
 220                <data
-220-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:7-38
+220-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:7-38
 221                    android:host="firebase.auth"
 222                    android:path="/"
 223                    android:scheme="recaptcha" />
-223-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\vaccinationApp\android\app\src\main\AndroidManifest.xml:7:13-35
+223-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:7:13-35
 224            </intent-filter>
 225        </activity>
 226
