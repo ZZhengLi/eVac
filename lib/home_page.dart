@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/next_appointment.dart';
+import 'package:vaccinationapp/pdf.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/taken_vaccine.dart';
 import 'package:vaccinationapp/drawer.dart';
@@ -166,7 +167,7 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 28.w),
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                    crossAxisCount: 1,
                     crossAxisSpacing: 19.w,
                     mainAxisExtent: 125.w,
                     mainAxisSpacing: 19.w),
@@ -174,19 +175,20 @@ class HomePage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   DiscoverSmallCard(
-                    onTap: onVCTapped,
-                    title: "Vaccine Certificates",
-                    gradientStartColor: const Color(0xff13DEA0),
-                    gradientEndColor: const Color(0xff06B782),
-                    icon: SvgPicture.asset("assets/icons/vaccines.svg",
-                        color: Colors.white, semanticsLabel: 'vaccines'),
-                  ),
+                      onTap: onVCTapped,
+                      title: "Vaccine Certificates",
+                      gradientStartColor: const Color(0xff13DEA0),
+                      gradientEndColor: const Color(0xff06B782),
+                      icon: SvgPicture.asset("assets/icons/vaccines.svg",
+                          color: Colors.white, semanticsLabel: 'vaccines'),
+                      subtitle: "Get your vaccination certificate here"),
                   DiscoverSmallCard(
                       onTap: onVSTapped,
                       title: "Details of Vaccines",
                       gradientStartColor: const Color(0xffFFD541),
                       gradientEndColor: const Color(0xffF0B31A),
-                      icon: const Icon(Icons.info, color: Colors.white)),
+                      icon: const Icon(Icons.info, color: Colors.white),
+                      subtitle: "Get more details about vaccines here"),
                   // DiscoverSmallCard(
                   //     onTap: onCtapped,
                   //     title: "Don't know",
