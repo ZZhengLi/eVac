@@ -423,7 +423,7 @@ class LatestVaccination extends StatelessWidget {
                                                 const EdgeInsets.only(top: 6),
                                             child: Text(
                                               'Vaccine Name',
-                                              textAlign: TextAlign.center,
+                                              textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontFamily:
                                                     FitnessAppTheme.fontName,
@@ -439,10 +439,6 @@ class LatestVaccination extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
                                         children: [
                                           Column(
                                             mainAxisAlignment:
@@ -451,14 +447,14 @@ class LatestVaccination extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '${dose} Dose',
+                                                '$dose Dose',
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                   fontFamily:
                                                       FitnessAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
-                                                  letterSpacing: -0.2,
+                                                  letterSpacing: -1.33,
                                                   color:
                                                       FitnessAppTheme.darkText,
                                                 ),
@@ -467,8 +463,8 @@ class LatestVaccination extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                     top: 6),
                                                 child: Text(
-                                                  'Dose Number',
-                                                  textAlign: TextAlign.center,
+                                                  'Dose\nNumber',
+                                                  textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontFamily: FitnessAppTheme
                                                         .fontName,
@@ -487,7 +483,7 @@ class LatestVaccination extends StatelessWidget {
                                     Expanded(
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
@@ -504,7 +500,7 @@ class LatestVaccination extends StatelessWidget {
                                                       FitnessAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
-                                                  letterSpacing: -0.2,
+                                                  letterSpacing: -1.33,
                                                   color:
                                                       FitnessAppTheme.darkText,
                                                 ),
@@ -513,7 +509,7 @@ class LatestVaccination extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                     top: 6),
                                                 child: Text(
-                                                  'Date',
+                                                  'Date\n',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontFamily: FitnessAppTheme

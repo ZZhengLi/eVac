@@ -147,7 +147,7 @@ class TakenVaccineState extends State<TakenVaccine> {
                                           children: <Widget>[
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  top: 16, left: 16, right: 24),
+                                                  top: 16, left: 16),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,

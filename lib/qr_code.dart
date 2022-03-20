@@ -19,7 +19,7 @@ class QrCode extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         centerTitle: true,
@@ -44,9 +44,7 @@ class QrCode extends StatelessWidget {
                 bottom: 0.2 * height,
                 child: const Text(
                   "      Scanners will know your medical information,\nappointment details when they scan your QR code.",
-                  style: TextStyle(
-                    color: FitnessAppTheme.grey,
-                  ),
+                  style: TextStyle(color: FitnessAppTheme.grey, fontSize: 12),
                 )),
             Positioned(
               bottom: 0.05 * height,

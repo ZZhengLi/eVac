@@ -15,13 +15,13 @@ class Setting extends StatelessWidget {
     EasyLoading.dismiss();
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         centerTitle: true,
         title: const Text(
           "Settings",
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.black,
             fontFamily: FitnessAppTheme.fontName,
             fontWeight: FontWeight.bold,
@@ -35,24 +35,6 @@ class Setting extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 50),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: ElevatedButton(
-          //         child: const Text("Reset Password"),
-          //         onPressed: () {
-          //           EasyLoading.show(maskType: EasyLoadingMaskType.black);
-          //           Navigator.push(context,
-          //               MaterialPageRoute(builder: (context) {
-          //             return ResetPassword();
-          //           }));
-          //           EasyLoading.dismiss();
-          //         },
-          //       ),
-          //     ),
-          //   ],
-          // ),
-
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Positioned(
@@ -71,7 +53,7 @@ class Setting extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.left,
                     children: const [
                       Text(
-                        "  Reset Password                                       ",
+                        "Reset Password",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,

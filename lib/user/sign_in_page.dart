@@ -28,14 +28,14 @@ class SignInPage extends StatelessWidget {
           backgroundColor: const Color(0xffffffff),
           body: Column(children: <Widget>[
             Container(
-                padding: EdgeInsets.fromLTRB(0.16 * width, 0.1 * height, 0, 0),
+                padding: EdgeInsets.fromLTRB(0.07 * width, 0.1 * height, 0, 0),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30))),
                 child: Row(children: const [
                   Text(
-                    " Welcome!\nSign In Now", //Welcome text
+                    "Welcome!\nSign In Now", //Welcome text
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 50,

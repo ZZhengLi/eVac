@@ -77,8 +77,8 @@ class CertificateDetailState extends State<CertificateDetail> {
                         horizontal: 28, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           "Beneficiary Details",
                           style: TextStyle(
                               color: DesignCourseAppTheme.nearlyBlue,
@@ -136,8 +136,9 @@ class CertificateDetailState extends State<CertificateDetail> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 4, bottom: 14, left: 98),
-                                        child: Text(
+                                            top: 4, bottom: 14, left: 10),
+                                        child: Expanded(
+                                            child: Text(
                                           snapshot.data["displayName"],
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -149,7 +150,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                             color: FitnessAppTheme.grey
                                                 .withOpacity(0.7),
                                           ),
-                                        ),
+                                        )),
                                       ),
                                     ],
                                   ),
@@ -173,7 +174,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 4, bottom: 14, left: 47),
+                                            top: 4, bottom: 14, left: 10),
                                         child: Text(
                                           "${snapshot.data["dob"].toDate().day.toString().padLeft(2, '0')}/${snapshot.data["dob"].toDate().month.toString().padLeft(2, '0')}/${snapshot.data["dob"].toDate().year.toString()}",
                                           textAlign: TextAlign.center,
@@ -210,7 +211,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 4, bottom: 14, left: 87),
+                                            top: 4, bottom: 14, left: 10),
                                         child: Text(
                                           snapshot.data["gender"],
                                           textAlign: TextAlign.center,
@@ -229,13 +230,15 @@ class CertificateDetailState extends State<CertificateDetail> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 4, bottom: 9),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4, bottom: 9),
                                         child: Text(
-                                          "ID Card Number:",
+                                          snapshot.data["nationality"] == "Thai"
+                                              ? "ID Card:"
+                                              : "Passport:",
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontFamily:
                                                 FitnessAppTheme.fontName,
                                             fontWeight: FontWeight.bold,
@@ -247,7 +250,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 4, bottom: 14, left: 25),
+                                            top: 4, bottom: 14, left: 10),
                                         child: Text(
                                           snapshot.data["id"],
                                           textAlign: TextAlign.center,
@@ -343,7 +346,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 80),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["dose_number$i"],
                             textAlign: TextAlign.center,
@@ -375,7 +378,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 83),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             "${data["date$i"].toDate().day.toString().padLeft(2, '0')}/${data["date$i"].toDate().month.toString().padLeft(2, '0')}/${data["date$i"].toDate().year}",
                             textAlign: TextAlign.center,
@@ -407,7 +410,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 13),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["vaccine_name$i"],
                             textAlign: TextAlign.center,
@@ -439,7 +442,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 19),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["manufacturer$i"],
                             textAlign: TextAlign.center,
@@ -459,7 +462,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         const Padding(
                           padding: EdgeInsets.only(left: 4, bottom: 9),
                           child: Text(
-                            "Lot Number:",
+                            "Lot No#:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,
@@ -471,7 +474,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 31),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["lot_number$i"],
                             textAlign: TextAlign.center,
@@ -503,7 +506,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 14, left: 53),
+                              top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["place_of_service$i"],
                             textAlign: TextAlign.center,

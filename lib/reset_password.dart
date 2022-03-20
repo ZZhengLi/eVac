@@ -22,13 +22,13 @@ class ResetPassword extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           centerTitle: true,
           title: const Text(
             "Reset Password",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontFamily: FitnessAppTheme.fontName,
               fontWeight: FontWeight.bold,
@@ -59,11 +59,12 @@ class ResetPassword extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "*********",
-                          fillColor: Color(0xfff2f3f8),
+                          fillColor: const Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xfff2f3f8)),
                               borderRadius: BorderRadius.circular(10))),
                       validator: passwordValidator,
                       onSaved: (password) => _password = password!,
@@ -79,11 +80,12 @@ class ResetPassword extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "*********",
-                          fillColor: Color(0xfff2f3f8),
+                          fillColor: const Color(0xfff2f3f8),
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xfff2f3f8)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xfff2f3f8)),
                               borderRadius: BorderRadius.circular(10))),
                       validator: (pass) =>
                           MatchValidator(errorText: "Password do not  match")

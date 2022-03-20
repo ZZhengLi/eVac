@@ -69,7 +69,7 @@ class DiscoverCard extends StatelessWidget {
                           assetName: AssetName.vectorTop),
                     ),
                 Padding(
-                  padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 24.h),
+                  padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
