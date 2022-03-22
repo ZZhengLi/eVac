@@ -1,16 +1,12 @@
-import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:vaccinationapp/vaccinations_detail.dart';
-// import 'package:vaccinationapp/certificate_detail.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class Vaccinations_Info extends StatefulWidget {
-  Vaccinations_Info({Key? key}) : super(key: key);
+  const Vaccinations_Info({Key? key}) : super(key: key);
 
   @override
   State<Vaccinations_Info> createState() => _Vaccinations_InfoState();
@@ -34,12 +30,12 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         centerTitle: true,
         title: const Text("Vaccine List",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontFamily: FitnessAppTheme.fontName,
               fontWeight: FontWeight.bold,
@@ -58,12 +54,12 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                 child: TextField(
                   controller: _searchController,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(30)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: DesignCourseAppTheme.nearlyBlue,
                               width: 2.5),
                           borderRadius: BorderRadius.circular(30)),
@@ -102,9 +98,10 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                   }
                   EasyLoading.dismiss();
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: GridView(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisExtent: 110,
                         ),
@@ -127,17 +124,13 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                                     data: data)));
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10,
-                                          right: 10,
-                                          top: 0,
-                                          bottom: 10),
+                                      padding: const EdgeInsets.only(left: 10),
                                       child: Container(
                                         height: 140,
                                         width: 300,
                                         decoration: BoxDecoration(
                                           color: FitnessAppTheme.white,
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(15.0),
                                               bottomLeft: Radius.circular(15.0),
                                               bottomRight:
@@ -147,7 +140,7 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                             BoxShadow(
                                                 color: FitnessAppTheme.grey
                                                     .withOpacity(0.2),
-                                                offset: Offset(1.1, 1.1),
+                                                offset: const Offset(1.1, 1.1),
                                                 blurRadius: 10.0),
                                           ],
                                         ),
@@ -155,7 +148,7 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                           children: <Widget>[
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  top: 4, left: 16, right: 24),
+                                                  left: 14),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -165,12 +158,12 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            left: 4, bottom: 8),
+                                                            bottom: 8),
                                                     child: Text(
                                                       data["name"],
                                                       textAlign:
                                                           TextAlign.center,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontFamily:
                                                               FitnessAppTheme
                                                                   .fontName,
@@ -203,8 +196,6 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .only(
-                                                                    left: 4,
-                                                                    bottom: 3,
                                                                     top: 7),
                                                             child: Text(
                                                               data[
@@ -212,7 +203,8 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 fontFamily:
                                                                     FitnessAppTheme
                                                                         .fontName,
@@ -243,8 +235,4 @@ class _Vaccinations_InfoState extends State<Vaccinations_Info> {
       ),
     );
   }
-
-  // void onHATapped() {
-  //   Get.to(() => VaccinationsDetail(), transition: Transition.zoom);
-  // }
 }

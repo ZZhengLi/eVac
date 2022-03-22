@@ -1,11 +1,11 @@
 import 'dart:typed_data';
-// import 'package:flutter/service.dart'
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -53,9 +53,9 @@ class _ScannerState extends State<Scanner> {
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 150.0
+    var scanArea = (MediaQuery.of(context).size.width < 300 ||
+            MediaQuery.of(context).size.height < 300)
+        ? 250.0
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
@@ -126,7 +126,7 @@ class _ScannerState extends State<Scanner> {
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
+  void _onQRViewCreated(QRViewController controller) async {
     setState(() {
       this.controller = controller;
     });
@@ -143,9 +143,11 @@ class _ScannerState extends State<Scanner> {
             .doc("QR/temp")
             .get()
             .then((value) async {
-          if (result!.code.toString() == value.data()!["code"]) {
+          _uid = FirebaseAuth.instance.currentUser!.uid;
+          if (result!.code.toString() == value.data()!["code"] &&
+              _uid == value["uid"]) {
             EasyLoading.show(maskType: EasyLoadingMaskType.black);
-            _uid = FirebaseAuth.instance.currentUser!.uid;
+
             await FirebaseFirestore.instance
                 .doc("Users/$_uid")
                 .collection("Vaccinations")
@@ -154,7 +156,7 @@ class _ScannerState extends State<Scanner> {
                 .then((doc) {
               exist = doc.exists;
             });
-            exist && _uid == value["uid"]
+            exist
                 ? await FirebaseFirestore.instance
                     .doc("Users/$_uid")
                     .collection("Vaccinations")
@@ -194,7 +196,7 @@ class _ScannerState extends State<Scanner> {
                 .delete();
             await _createPDF(
               value["displayName"],
-              value["dob"].toDate(),
+              "${value["dob"].toDate().year}-${value["dob"].toDate().month.toString().padLeft(2, '0')}-${value["dob"].toDate().day.toString().padLeft(2, '0')}",
               value["gender"],
               value["idC"],
               value["address"],
@@ -240,7 +242,7 @@ class _ScannerState extends State<Scanner> {
 
 Future<void> _createPDF(
     String _name,
-    DateTime _dob,
+    String _dob,
     String _gender,
     String _idCard,
     String _address,
@@ -259,12 +261,20 @@ Future<void> _createPDF(
     // final page = document.pages.add();
 
     final PdfPageTemplateElement headerTemplate =
-        PdfPageTemplateElement(const Rect.fromLTWH(0, 0, 515, 50));
-//Draw text in the header.
+        PdfPageTemplateElement(const Rect.fromLTWH(300, 150, 600, 110));
+
     headerTemplate.graphics.drawString(
-      'Covid-19 Vaccination Certificate\n THAILAND NATIONAL CERTIFICATE OF COVID-19 VACCINATION',
-      PdfStandardFont(PdfFontFamily.helvetica, 25),
-    );
+        'Thailand National Certificate of Covid-19 Vaccination',
+        PdfStandardFont(PdfFontFamily.helvetica, 18, style: PdfFontStyle.bold),
+        bounds: const Rect.fromLTWH(70, 70, 500, 80));
+
+    headerTemplate.graphics.drawImage(
+        PdfBitmap(await _readImageData('publicHealth.png')),
+        const Rect.fromLTWH(267, 0, 70, 60));
+    headerTemplate.graphics.drawImage(
+        PdfBitmap(await _readImageData('eVac.png')),
+        const Rect.fromLTWH(0, 0, 70, 30));
+
 //Add the header element to the document.
     document.template.top = headerTemplate;
 
@@ -280,6 +290,8 @@ Future<void> _createPDF(
 
     header.style.font =
         PdfStandardFont(PdfFontFamily.helvetica, 16, style: PdfFontStyle.bold);
+    header.style.backgroundBrush = PdfBrushes.deepSkyBlue;
+    header.style.textBrush = PdfBrushes.white;
 
 //Add rows to grid
     PdfGridRow row1 = grid.rows.add();
@@ -325,15 +337,13 @@ Future<void> _createPDF(
     header1.cells[4].value = 'Lot Number';
     header1.cells[5].value = 'Location';
 
-//Add columns to second grid
-    // grid2.columns.add(count: 2);
-    // grid2.headers.add(1);
-    // PdfGridRow header1 = grid2.headers[0];
-    // header1.cells[0].value = 'Vaccination Details';
-    // header1.cells[1].value = '';
-
     header1.style.font =
         PdfStandardFont(PdfFontFamily.helvetica, 12, style: PdfFontStyle.bold);
+    header1.style.backgroundBrush = PdfBrushes.deepSkyBlue;
+    header1.style.textBrush = PdfBrushes.white;
+    PdfStringFormat format = PdfStringFormat();
+    format.alignment = PdfTextAlignment.center;
+    format.lineAlignment = PdfVerticalAlignment.bottom;
 
 //Add rows to grid
     PdfGridRow row11 = grid2.rows.add();
@@ -344,26 +354,6 @@ Future<void> _createPDF(
     row11.cells[3].value = value2["manufacturer1"];
     row11.cells[4].value = value2["lot_number1"];
     row11.cells[5].value = value2["place_of_service1"];
-
-    // PdfGridRow row12 = grid2.rows.add();
-    // row12.cells[0].value = 'Dose Number';
-    // row12.cells[1].value = _doseNumber;
-    // row12.cells[1].value = '12/12/2022';
-    // row12.cells[2].value = 'Pfizer';
-    // row12.cells[4].value = 'Lot number';
-    // row12.cells[5].value = 'Location';
-
-    // PdfGridRow row13 = grid2.rows.add();
-    // row13.cells[0].value = 'Date of Vaccine';
-    // row13.cells[1].value = '12/12/2022';
-
-    // PdfGridRow row14 = grid2.rows.add();
-    // row14.cells[0].value = 'Lot Number';
-    // row14.cells[1].value = '7841520154';
-
-    // PdfGridRow row15 = grid2.rows.add();
-    // row15.cells[0].value = 'Manufacturer';
-    // row15.cells[1].value = 'Place of Survice';
 
     PdfGridRow? row13 =
         int.parse(value2["latest"]) > 1 ? grid2.rows.add() : null;
@@ -412,7 +402,7 @@ Future<void> _createPDF(
         textBrush: PdfBrushes.black,
         font: PdfStandardFont(PdfFontFamily.helvetica, 13));
 
-//Draw the grid in PDF document page
+    //Draw the grid in PDF document page
     grid2.draw(
         page: result.page,
         bounds: Rect.fromLTWH(0, result.bounds.bottom + 20, 0, 0));
@@ -421,8 +411,6 @@ Future<void> _createPDF(
     List<int> bytes = document.save();
 
     document.dispose();
-    // saveAndLaunchFile(bytes, "Certificate.pdf");
-    // openFile(bytes, "Output.pdf");
     final path = (await getExternalStorageDirectory())!.path;
     final file = File("$path/Certificate.pdf");
     await file.writeAsBytes(bytes, flush: true);
@@ -439,4 +427,10 @@ Future<void> _createPDF(
         .doc(_vaccineName)
         .update({"url": url.toString()});
   });
+}
+
+Future<Uint8List> _readImageData(String name) async {
+  final pngImage = await rootBundle.load('assets/pics/$name');
+  return pngImage.buffer
+      .asUint8List(pngImage.offsetInBytes, pngImage.lengthInBytes);
 }

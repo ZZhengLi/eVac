@@ -13,6 +13,7 @@ class DiscoverSmallCard extends StatelessWidget {
   final double? borderRadius;
   final Widget? icon;
   final Function? onTap;
+  final String? tag;
   const DiscoverSmallCard(
       {Key? key,
       this.title,
@@ -23,7 +24,8 @@ class DiscoverSmallCard extends StatelessWidget {
       this.width,
       this.borderRadius,
       this.onTap,
-      this.icon})
+      this.icon,
+      this.tag})
       : super(key: key);
 
   @override
@@ -46,58 +48,75 @@ class DiscoverSmallCard extends StatelessWidget {
         child: Stack(
           children: [
             SizedBox(
-              height: 125.w,
-              width: 150.w,
+              height: 176.w,
+              width: 305.w,
             ),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: SizedBox(
-                height: 125.w,
-                width: 150.w,
+                height: 176.w,
+                width: 305.w,
                 child: Stack(
                   children: [
                     SizedBox(
-                      height: 125.w,
-                      width: 150.w,
-                      child: const SvgAsset(
-                          assetName: AssetName.vectorSmallBottom),
+                      height: 176.w,
+                      width: 305.w,
+                      child: const SvgAsset(assetName: AssetName.vectorBottom),
                     ),
                     SizedBox(
                       child: SvgAsset(
-                          height: 125.w,
-                          width: 150.w,
-                          fit: BoxFit.fitHeight,
-                          assetName: AssetName.vectorSmallTop),
+                          height: 176.w,
+                          width: 305.w,
+                          // fit: BoxFit.fitHeight,
+                          assetName: AssetName.vectorTop),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 125.w,
-              width: 150.w,
-              child: Padding(
-                padding: EdgeInsets.only(left: 20.w, top: 20.w, bottom: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title!,
-                      style: TextStyle(
-                          fontSize: 18.w,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    Row(
+                height: 176.w,
+                width: 305.w,
+                child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 20.w, top: 20.w, bottom: 20.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        icon ?? Container(),
+                        Hero(
+                          tag: tag ?? '',
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Text(
+                              title!,
+                              style: TextStyle(
+                                  fontSize: 18.w,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          subtitle!,
+                          style: TextStyle(
+                              fontSize: 14.w,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        Row(
+                          children: [
+                            icon ?? Container(),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
-              ),
-            ),
+                    )))
           ],
         ),
       ),

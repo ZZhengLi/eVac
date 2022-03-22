@@ -78,7 +78,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="vaccinationapp"
+        android:label="eVac"
         android:usesCleartextTraffic="true" >
         <activity
             android:name="com.seniorproject.vaccinationapp.MainActivity"

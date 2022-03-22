@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vaccinationapp/next_appointment.dart';
-import 'package:vaccinationapp/pdf.dart';
 import 'package:vaccinationapp/qr_code.dart';
 import 'package:vaccinationapp/taken_vaccine.dart';
 import 'package:vaccinationapp/drawer.dart';
@@ -35,10 +34,7 @@ class HomePage extends StatelessWidget {
         .doc("Users/$uid")
         .collection("Appointment")
         .where("time",
-            isGreaterThanOrEqualTo:
-                Timestamp.fromDate(DateTime.now().subtract(const Duration(
-              days: 1,
-            ))))
+            isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
         .orderBy("time")
         .limit(1)
         .snapshots();
@@ -165,41 +161,34 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 16.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 28.w),
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    crossAxisSpacing: 19.w,
-                    mainAxisExtent: 125.w,
-                    mainAxisSpacing: 19.w),
+              child: ListView(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  DiscoverSmallCard(
-                      onTap: onVCTapped,
-                      title: "Vaccine Certificates",
-                      gradientStartColor: const Color(0xff13DEA0),
-                      gradientEndColor: const Color(0xff06B782),
-                      icon: SvgPicture.asset("assets/icons/vaccines.svg",
-                          color: Colors.white, semanticsLabel: 'vaccines'),
-                      subtitle: "Get your vaccination certificate here"),
-                  DiscoverSmallCard(
-                      onTap: onVSTapped,
-                      title: "Details of Vaccines",
-                      gradientStartColor: const Color(0xffFFD541),
-                      gradientEndColor: const Color(0xffF0B31A),
-                      icon: const Icon(Icons.info, color: Colors.white),
-                      subtitle: "Get more details about vaccines here"),
-                  // DiscoverSmallCard(
-                  //     onTap: onCtapped,
-                  //     title: "Don't know",
-                  //     gradientStartColor: const Color(0xffFC67A7),
-                  //     gradientEndColor: const Color(0xffF6815B),
-                  //     icon: const Icon(Icons.local_hospital,
-                  //         color: Colors.white)),
-                  // DiscoverSmallCard(
-                  //     onTap: onHATapped,
-                  //     title: "Don't know",
-                  //     icon: const Icon(Icons.history, color: Colors.white)),
+                  SizedBox(
+                    height: 135,
+                    child: DiscoverSmallCard(
+                        onTap: onVCTapped,
+                        tag: "1",
+                        title: "Vaccine Certificates",
+                        gradientStartColor: const Color(0xff13DEA0),
+                        gradientEndColor: const Color(0xff06B782),
+                        icon: SvgPicture.asset("assets/icons/vaccines.svg",
+                            color: Colors.white, semanticsLabel: 'vaccines'),
+                        subtitle: "Get your vaccination certificate here"),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 135,
+                    child: DiscoverSmallCard(
+                        onTap: onVSTapped,
+                        tag: "2",
+                        title: "Details of Vaccines",
+                        gradientStartColor: const Color(0xffFFD541),
+                        gradientEndColor: const Color(0xffF0B31A),
+                        icon: const Icon(Icons.info, color: Colors.white),
+                        subtitle: "Get more details about vaccines here"),
+                  ),
                 ],
               ),
             )
@@ -210,21 +199,14 @@ class HomePage extends StatelessWidget {
   }
 
   void onVCTapped() {
-    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => TakenVaccine(), transition: Transition.zoom);
   }
 
   void onHATapped() {
-    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => NextAppointment(), transition: Transition.zoom);
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => const MyDiaryScreen()),
-    // );
   }
 
   void onVSTapped() {
-    // EasyLoading.show(maskType: EasyLoadingMaskType.black);
     Get.to(() => Vaccinations_Info(), transition: Transition.zoom);
   }
 

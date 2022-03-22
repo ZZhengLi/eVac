@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:vaccinationapp/certificate_detail.dart';
-
 import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
@@ -422,7 +419,7 @@ class LatestVaccination extends StatelessWidget {
                                             padding:
                                                 const EdgeInsets.only(top: 6),
                                             child: Text(
-                                              'Vaccine Name',
+                                              'Vaccine\nName',
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontFamily:

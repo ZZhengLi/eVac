@@ -28,7 +28,7 @@
     </intent>
   </queries>
    <application
-        android:label="vaccinationapp"
+        android:label="eVac"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity

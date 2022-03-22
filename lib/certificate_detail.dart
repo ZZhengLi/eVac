@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vaccinationapp/certificate_qr.dart';
-
 import 'package:vaccinationapp/fitness_app/fitness_app_theme.dart';
 import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
@@ -72,7 +70,7 @@ class CertificateDetailState extends State<CertificateDetail> {
             body: SafeArea(
               child: ListView(
                 children: [
-                  Padding(
+                  Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 28, vertical: 10),
                     child: Row(
@@ -88,7 +86,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                       ],
                     ),
                   ),
-                  Padding(
+                  Container(
                       padding:
                           const EdgeInsets.only(left: 32, right: 23, top: 10),
                       child: Container(
@@ -108,8 +106,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                         ),
                         child: Column(
                           children: <Widget>[
-                            Row(),
-                            Padding(
+                            Container(
                               padding: const EdgeInsets.only(
                                   top: 16, left: 16, right: 24),
                               child: Column(
@@ -134,32 +131,30 @@ class CertificateDetailState extends State<CertificateDetail> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 4, bottom: 14, left: 10),
-                                        child: Expanded(
-                                            child: Text(
-                                          snapshot.data["displayName"],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily:
-                                                FitnessAppTheme.fontName,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16,
-                                            letterSpacing: 0.0,
-                                            color: FitnessAppTheme.grey
-                                                .withOpacity(0.7),
-                                          ),
-                                        )),
-                                      ),
+                                      Container(
+                                          padding: const EdgeInsets.only(
+                                              top: 4, bottom: 14, left: 10),
+                                          child: Text(
+                                            snapshot.data["displayName"],
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  FitnessAppTheme.fontName,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              letterSpacing: 0.0,
+                                              color: FitnessAppTheme.grey
+                                                  .withOpacity(0.7),
+                                            ),
+                                          )),
                                     ],
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 4, bottom: 9),
-                                        child: Text(
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 4, bottom: 9),
+                                        child: const Text(
                                           "Date of Birth:",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -172,7 +167,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      Container(
                                         padding: const EdgeInsets.only(
                                             top: 4, bottom: 14, left: 10),
                                         child: Text(
@@ -193,10 +188,10 @@ class CertificateDetailState extends State<CertificateDetail> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 4, bottom: 9),
-                                        child: Text(
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 4, bottom: 9),
+                                        child: const Text(
                                           "Gender:",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -209,7 +204,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      Container(
                                         padding: const EdgeInsets.only(
                                             top: 4, bottom: 14, left: 10),
                                         child: Text(
@@ -230,7 +225,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Padding(
+                                      Container(
                                         padding: const EdgeInsets.only(
                                             left: 4, bottom: 9),
                                         child: Text(
@@ -248,7 +243,7 @@ class CertificateDetailState extends State<CertificateDetail> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
+                                      Container(
                                         padding: const EdgeInsets.only(
                                             top: 4, bottom: 14, left: 10),
                                         child: Text(
@@ -274,9 +269,10 @@ class CertificateDetailState extends State<CertificateDetail> {
                         ),
                       )),
                   const SizedBox(height: 28),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 28, vertical: 10),
-                    child: Text(
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 28, vertical: 10),
+                    child: const Text(
                       "Vaccination Details",
                       style: TextStyle(
                           color: DesignCourseAppTheme.nearlyBlue,
@@ -303,7 +299,7 @@ class CertificateDetailState extends State<CertificateDetail> {
 
 Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
   return Column(children: [
-    Padding(
+    Container(
         padding: const EdgeInsets.only(left: 32, right: 23, top: 10),
         child: Container(
           decoration: BoxDecoration(
@@ -322,8 +318,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
           ),
           child: Column(
             children: <Widget>[
-              Row(),
-              Padding(
+              Container(
                 padding: const EdgeInsets.only(top: 16, left: 16, right: 24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -331,9 +326,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Dose:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -344,7 +339,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
@@ -363,9 +358,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                     ),
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Date:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -376,7 +371,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
@@ -395,9 +390,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                     ),
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Vaccine Name:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -408,7 +403,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
@@ -427,9 +422,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                     ),
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Manufacturer:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -440,7 +435,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
@@ -459,9 +454,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                     ),
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Lot No#:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -472,7 +467,7 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
@@ -491,9 +486,9 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                     ),
                     Row(
                       children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4, bottom: 9),
-                          child: Text(
+                        Container(
+                          padding: const EdgeInsets.only(left: 4, bottom: 9),
+                          child: const Text(
                             "Location:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -504,12 +499,12 @@ Column newMethod(QueryDocumentSnapshot<Object?> data, int i) {
                             ),
                           ),
                         ),
-                        Padding(
+                        Container(
                           padding: const EdgeInsets.only(
                               top: 4, bottom: 14, left: 10),
                           child: Text(
                             data["place_of_service$i"],
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.start,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,
                               fontWeight: FontWeight.w500,

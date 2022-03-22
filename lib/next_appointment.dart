@@ -8,12 +8,6 @@ import 'package:vaccinationapp/design_course/design_course_app_theme.dart';
 
 class NextAppointment extends StatelessWidget {
   NextAppointment({Key? key}) : super(key: key);
-  // final AnimationController? animationController;
-  // final Animation<double>? animation;
-
-  // NextAppointments({Key? key, this.animationController, this.animation})
-  //     : super(key: key);
-
   var uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
@@ -59,13 +53,12 @@ class NextAppointment extends StatelessWidget {
               children: [
                 ...snapshot.data!.docs.map((QueryDocumentSnapshot data) {
                   final DateTime time = data["time"].toDate();
-                  if (time.isBefore(
-                      DateTime.now().subtract(const Duration(days: 1)))) {
+                  if (time.isBefore(DateTime.now())) {
                     FirebaseFirestore.instance
                         .doc("Users/$uid")
                         .collection("Appointment")
                         .doc(data.reference.id)
-                        .delete();
+                        .update({"expired": true});
                   }
 
                   return time.isBefore(DateTime(2200))
@@ -148,7 +141,7 @@ class NextAppointment extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                     left: 8, bottom: 8),
                                                 child: Text(
-                                                  data["dose_number"],
+                                                  "${data["dose_number"]} Dose",
                                                   textAlign: TextAlign.center,
                                                   style: const TextStyle(
                                                     fontFamily: FitnessAppTheme
@@ -257,50 +250,57 @@ class NextAppointment extends StatelessWidget {
                                   ),
                                 ),
                                 InkWell(
-                                    onTap: () async {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text(
-                                              'Confirm',
-                                            ),
-                                            content: const Text(
-                                              'Are you sure to cancel this appointment?',
-                                            ),
-                                            actions: <Widget>[
-                                              ElevatedButton(
-                                                child: const Text('YES'),
-                                                onPressed: () async {
-                                                  Navigator.of(context).pop();
-                                                  EasyLoading.show(
-                                                      maskType:
-                                                          EasyLoadingMaskType
-                                                              .black);
-                                                  await FirebaseFirestore
-                                                      .instance
-                                                      .doc("Users/$uid")
-                                                      .collection("Appointment")
-                                                      .doc(data.reference.id)
-                                                      .delete();
-                                                  EasyLoading.dismiss();
-                                                },
-                                              ),
-                                              ElevatedButton(
-                                                child: const Text('NO'),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                            elevation: 20,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                          );
-                                        },
-                                      );
-                                    },
+                                    onTap: !data["expired"]
+                                        ? () async {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: const Text(
+                                                    'Confirm',
+                                                  ),
+                                                  content: const Text(
+                                                    'Are you sure to cancel this appointment?',
+                                                  ),
+                                                  actions: <Widget>[
+                                                    ElevatedButton(
+                                                      child: const Text('YES'),
+                                                      onPressed: () async {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                        EasyLoading.show(
+                                                            maskType:
+                                                                EasyLoadingMaskType
+                                                                    .black);
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .doc("Users/$uid")
+                                                            .collection(
+                                                                "Appointment")
+                                                            .doc(data
+                                                                .reference.id)
+                                                            .delete();
+                                                        EasyLoading.dismiss();
+                                                      },
+                                                    ),
+                                                    ElevatedButton(
+                                                      child: const Text('NO'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                  elevation: 20,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                );
+                                              },
+                                            );
+                                          }
+                                        : null,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 24,
@@ -313,32 +313,36 @@ class NextAppointment extends StatelessWidget {
                                             child: Container(
                                               height: 42,
                                               decoration: BoxDecoration(
-                                                color:
-                                                    // Color.fromRGBO(255, 82, 135, 0.8),
-                                                    Colors.red.shade400,
+                                                color: !data["expired"]
+                                                    ? Colors.red.shade400
+                                                    : Colors.grey,
                                                 borderRadius:
                                                     const BorderRadius.all(
                                                   Radius.circular(16.0),
                                                 ),
                                                 boxShadow: <BoxShadow>[
                                                   BoxShadow(
-                                                      color:
-                                                          const Color.fromRGBO(
+                                                      color: !data["expired"]
+                                                          ? const Color
+                                                                      .fromRGBO(
                                                                   255,
                                                                   82,
                                                                   135,
                                                                   0.8)
-                                                              .withOpacity(0.5),
+                                                              .withOpacity(0.5)
+                                                          : Colors.grey,
                                                       offset: const Offset(
                                                           1.1, 1.1),
                                                       blurRadius: 10.0),
                                                 ],
                                               ),
-                                              child: const Center(
+                                              child: Center(
                                                 child: Text(
-                                                  'Cancel Appointment',
+                                                  !data["expired"]
+                                                      ? "Cancel Appointment"
+                                                      : "not coming",
                                                   textAlign: TextAlign.left,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18,
                                                     letterSpacing: 0.0,

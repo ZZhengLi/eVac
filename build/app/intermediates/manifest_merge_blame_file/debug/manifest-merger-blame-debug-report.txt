@@ -140,8 +140,8 @@
 79        android:debuggable="true"
 80        android:icon="@mipmap/ic_launcher"
 80-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:32:9-43
-81        android:label="vaccinationapp"
-81-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:31:9-39
+81        android:label="eVac"
+81-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:31:9-29
 82        android:usesCleartextTraffic="true" >
 82-->D:\1A\University\Year 2021-2\Senior Project\vaccinationApp2\android\app\src\main\AndroidManifest.xml:33:9-44
 83        <activity

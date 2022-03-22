@@ -186,7 +186,9 @@ class _InfoPageState extends State<InfoPage> {
                                       edit: !_verification && editState,
                                       keyboardType: TextInputType.name),
                                   infos(
-                                      title: "ID Card/Passport",
+                                      title: _nationality.text == "Thai"
+                                          ? "ID Card:"
+                                          : "Passport:",
                                       controller: _idCard,
                                       edit: !_verification && editState,
                                       keyboardType: TextInputType.text),
@@ -357,7 +359,7 @@ class _InfoPageState extends State<InfoPage> {
                                   infos(
                                       title: "Nationality",
                                       controller: _nationality,
-                                      edit: editState,
+                                      edit: !_verification && editState,
                                       keyboardType: TextInputType.text),
                                   infos(
                                       title: "E-mail",

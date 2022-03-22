@@ -147,7 +147,13 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       infoFormat(
                           width, height, "Name", snapshot.data["displayName"]),
-                      infoFormat(width, height, "ID Card", snapshot.data["id"]),
+                      infoFormat(
+                          width,
+                          height,
+                          snapshot.data["nationality"] == "Thai"
+                              ? "ID Card"
+                              : "Passport",
+                          snapshot.data["id"]),
                       infoFormat(
                           width, height, "Phone", snapshot.data["phone"]),
                       infoFormat(width, height, "Nationality",
