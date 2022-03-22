@@ -1,4 +1,4 @@
-# vaccinationapp
+# eVac
 
 A new Flutter project.
 
